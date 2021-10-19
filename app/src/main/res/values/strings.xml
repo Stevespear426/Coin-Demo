@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Kotlin Demo</string>
+    <string name="sentence">%s %s %s.</string>
+</resources>
