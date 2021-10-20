@@ -1,10 +1,8 @@
 package com.example.kotlindemo.viewmodel.coin_detail
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
@@ -12,8 +10,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -66,45 +62,7 @@ class CoinDetailViewModel @Inject constructor(
             when {
                 state.value.coinDetail != null -> {
                     state.value.coinDetail?.let { coin ->
-                        LazyColumn(
-                            Modifier
-                                .testTag("MainColumn")
-                                .padding(
-                                    horizontal = 20.dp
-                                )
-                        ) {
-                            item {
-                                Spacer(modifier = Modifier.height(15.dp))
-                                CoinTitleItem(coin)
-                                Spacer(modifier = Modifier.height(5.dp))
-                                Text(
-                                    coin.description ?: "",
-                                    style = MaterialTheme.typography.body2
-                                )
-                                Spacer(modifier = Modifier.height(15.dp))
-                                Text(
-                                    text = "Tags",
-                                    style = MaterialTheme.typography.h6
-                                )
-                                Spacer(modifier = Modifier.height(5.dp))
-                                coin.tags?.let { tags -> TagsGrid(tags) }
-                                Spacer(modifier = Modifier.height(15.dp))
-                                Text(
-                                    text = "Team members",
-                                    style = MaterialTheme.typography.h6
-                                )
-                                Spacer(modifier = Modifier.height(5.dp))
-                            }
-                            coin.team?.let { team ->
-                                items(team) { member ->
-                                    Text(
-                                        text = "${member.name} (${member.position})",
-                                        maxLines = 1,
-                                        overflow = TextOverflow.Ellipsis,
-                                    )
-                                }
-                            }
-                        }
+                        CoinDetailView(coin)
                     }
                 }
                 state.value.isLoading -> {

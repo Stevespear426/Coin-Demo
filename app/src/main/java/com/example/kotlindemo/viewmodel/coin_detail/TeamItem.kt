@@ -1,0 +1,26 @@
+package com.example.kotlindemo.viewmodel.coin_detail
+
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
+import com.example.kotlindemo.repository.model.Team
+
+@Preview
+@Composable
+fun TeamItem(@PreviewParameter(SampleTeam::class) member: Team) {
+    Text(
+        text = "${member.name} (${member.position})",
+        maxLines = 1,
+        overflow = TextOverflow.Ellipsis,
+    )
+}
+
+class SampleTeam : PreviewParameterProvider<Team> {
+    override val values = sequenceOf(
+        Team(id = "", name = "Steve Spear", position = "Dev")
+    )
+    override val count: Int = 1
+}

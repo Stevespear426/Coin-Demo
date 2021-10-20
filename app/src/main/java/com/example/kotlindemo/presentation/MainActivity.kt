@@ -34,7 +34,6 @@ class MainActivity : ComponentActivity() {
             composable("coin_detail_screen/{coinId}",
                 arguments = listOf(
                     navArgument(PARAM_COIN_ID) {
-                        // Make argument type safe
                         type = NavType.StringType
                     }
                 )

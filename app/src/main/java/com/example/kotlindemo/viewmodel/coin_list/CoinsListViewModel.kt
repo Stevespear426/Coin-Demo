@@ -1,21 +1,14 @@
 package com.example.kotlindemo.viewmodel.coin_list
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.kotlindemo.common.Resource
@@ -44,10 +37,10 @@ class CoinsListViewModel @Inject constructor(
         getCoinsUseCase().flowOn(Dispatchers.IO).onEach { result ->
             when (result) {
                 is Resource.Success -> {
-                    _state.value = CoinListState(coins = result.data?: emptyList())
+                    _state.value = CoinListState(coins = result.data ?: emptyList())
                 }
                 is Resource.Error -> {
-                    _state.value = CoinListState(error = result.message?: "Error")
+                    _state.value = CoinListState(error = result.message ?: "Error")
                 }
                 is Resource.Loading -> {
                     _state.value = CoinListState(isLoading = true)
@@ -60,19 +53,13 @@ class CoinsListViewModel @Inject constructor(
     fun MainContent(onClick: (id: String) -> Unit) {
         val coinState = state.value
         Box(modifier = Modifier.fillMaxSize()) {
-            LazyColumn(
-                Modifier
-                    .fillMaxSize()
-                    .background(Color.LightGray)
-                    .padding(top = 10.dp)
-                    .testTag("LazyColumnTestId"),
-                verticalArrangement = Arrangement.spacedBy(5.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                items(coinState.coins) { coin -> CoinItem(coin, onClick) }
-            }
+            CoinList(coins = coinState.coins, onClick = onClick)
             if (coinState.isLoading) {
-                CircularProgressIndicator(modifier = Modifier.align(Alignment.Center).testTag("Spinner"))
+                CircularProgressIndicator(
+                    modifier = Modifier
+                        .align(Alignment.Center)
+                        .testTag("Spinner")
+                )
             }
         }
     }

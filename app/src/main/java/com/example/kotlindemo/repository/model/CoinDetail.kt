@@ -8,42 +8,42 @@ import java.util.concurrent.TimeUnit
 
 @Entity(tableName = "coin_details")
 data class CoinDetail(
-    val description: String?,
+    val description: String? = null,
     @SerializedName("development_status")
-    val developmentStatus: String?,
+    val developmentStatus: String? = null,
     @SerializedName("first_data_at")
-    val firstDataAt: String?,
+    val firstDataAt: String? = null,
     @SerializedName("hardware_wallet")
-    val hardwareWallet: Boolean?,
+    val hardwareWallet: Boolean? = null,
     @SerializedName("hash_algorithm")
-    val hashAlgorithm: String?,
+    val hashAlgorithm: String? = null,
     @PrimaryKey
     val id: String = "",
     @SerializedName("is_active")
-    val isActive: Boolean?,
+    val isActive: Boolean? = null,
     @SerializedName("is_new")
-    val isNew: Boolean?,
+    val isNew: Boolean? = null,
     @SerializedName("last_data_at")
-    val lastDataAt: String?,
-    val links: Links?,
+    val lastDataAt: String? = null,
+    val links: Links? = null,
     @SerializedName("links_extended")
-    val linksExtended: List<LinksExtended>?,
-    val message: String?,
-    val name: String?,
+    val linksExtended: List<LinksExtended>? = null,
+    val message: String? = null,
+    val name: String? = null,
     @SerializedName("open_source")
-    val openSource: Boolean?,
+    val openSource: Boolean? = null,
     @SerializedName("org_structure")
-    val orgStructure: String?,
+    val orgStructure: String? = null,
     @SerializedName("proof_type")
-    val proofType: String?,
-    val rank: Int?,
+    val proofType: String? = null,
+    val rank: Int? = null,
     @SerializedName("started_at")
-    val startedAt: String?,
-    val symbol: String?,
-    val tags: List<Tag>?,
-    val team: List<Team>?,
-    val type: String?,
-    val whitepaper: Whitepaper?,
+    val startedAt: String? = null,
+    val symbol: String? = null,
+    val tags: List<Tag>? = null,
+    val team: List<Team>? = null,
+    val type: String? = null,
+    val whitepaper: Whitepaper? = null,
     var timestamp: Long = System.currentTimeMillis()
 ) {
     fun updateTimestamp() {
