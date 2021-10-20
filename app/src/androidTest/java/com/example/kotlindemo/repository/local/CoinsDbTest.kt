@@ -98,26 +98,26 @@ class CoinsDbTest {
 
     private fun verifyCoinDetails(coinDetails: CoinDetail) {
         assertEquals("description", coinDetails.description)
-        assertEquals("development_status", coinDetails.development_status)
-        assertEquals("first_data_at", coinDetails.first_data_at)
-        assertEquals(true, coinDetails.hardware_wallet)
-        assertEquals("hash_algorithm", coinDetails.hash_algorithm)
+        assertEquals("development_status", coinDetails.developmentStatus)
+        assertEquals("first_data_at", coinDetails.firstDataAt)
+        assertEquals(true, coinDetails.hardwareWallet)
+        assertEquals("hash_algorithm", coinDetails.hashAlgorithm)
         assertEquals("id1234", coinDetails.id)
-        assertEquals(true, coinDetails.is_active)
-        assertEquals(true, coinDetails.is_new)
-        assertEquals("last_data_at", coinDetails.last_data_at)
+        assertEquals(true, coinDetails.isActive)
+        assertEquals(true, coinDetails.isNew)
+        assertEquals("last_data_at", coinDetails.lastDataAt)
         assertEquals("youtube", coinDetails.links?.youtube?.get(0))
-        var linkExtended = coinDetails.links_extended?.get(0)
+        var linkExtended = coinDetails.linksExtended?.get(0)
         assertEquals("www.url.com", linkExtended?.url)
         assertEquals(5, linkExtended?.stats?.contributors)
         assertEquals(10, linkExtended?.stats?.followers)
         assertEquals("message", coinDetails.message)
         assertEquals("name", coinDetails.name)
-        assertEquals(true, coinDetails.open_source)
-        assertEquals("org_structure", coinDetails.org_structure)
-        assertEquals("proof_type", coinDetails.proof_type)
+        assertEquals(true, coinDetails.openSource)
+        assertEquals("org_structure", coinDetails.orgStructure)
+        assertEquals("proof_type", coinDetails.proofType)
         assertEquals(1, coinDetails.rank)
-        assertEquals("started_at", coinDetails.started_at)
+        assertEquals("started_at", coinDetails.startedAt)
         assertEquals("symbol", coinDetails.symbol)
         assertEquals("Tag", coinDetails.tags?.get(0)?.name)
         assertEquals("Team", coinDetails.team?.get(0)?.name)
@@ -127,23 +127,23 @@ class CoinsDbTest {
 
     private fun getCoinDetails(): CoinDetail = CoinDetail(
         description = "description",
-        development_status = "development_status",
-        first_data_at = "first_data_at",
-        hardware_wallet = true,
-        hash_algorithm = "hash_algorithm",
+        developmentStatus = "development_status",
+        firstDataAt = "first_data_at",
+        hardwareWallet = true,
+        hashAlgorithm = "hash_algorithm",
         id = "id1234",
-        is_active = true,
-        is_new = true,
-        last_data_at = "last_data_at",
+        isActive = true,
+        isNew = true,
+        lastDataAt = "last_data_at",
         links = Links(youtube = listOf("youtube")),
-        links_extended = listOf(LinksExtended(stats = Stats(contributors = 5, followers = 10), url = "www.url.com")),
+        linksExtended = listOf(LinksExtended(stats = Stats(contributors = 5, followers = 10), url = "www.url.com")),
         message = "message",
         name = "name",
-        open_source = true,
-        org_structure = "org_structure",
-        proof_type = "proof_type",
+        openSource = true,
+        orgStructure = "org_structure",
+        proofType = "proof_type",
         rank = 1,
-        started_at = "started_at",
+        startedAt = "started_at",
         symbol = "symbol",
         tags = listOf(Tag(name = "Tag")),
         team = listOf(Team(name = "Team")),
