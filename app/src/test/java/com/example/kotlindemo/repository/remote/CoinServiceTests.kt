@@ -90,7 +90,6 @@ class CoinServiceTests {
         coinDetails.team?.let { verifyTeam(it) }?: fail()
         assertEquals("coin", coinDetails.type)
         coinDetails.whitepaper?.let { verifyWhitepaper(it) }?: fail()
-        assertEquals("https://static.coinpaprika.com/storage/cdn/whitepapers/215.pdf", coinDetails.whitepaper?.link)
     }
 
     private fun verifyWhitepaper(whitepaper: Whitepaper) {

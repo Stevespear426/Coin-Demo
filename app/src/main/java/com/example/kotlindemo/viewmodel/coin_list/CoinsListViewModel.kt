@@ -1,4 +1,4 @@
-package com.example.kotlindemo.viewmodel
+package com.example.kotlindemo.viewmodel.coin_list
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

@@ -1,4 +1,4 @@
-package com.example.kotlindemo.viewmodel
+package com.example.kotlindemo.viewmodel.coin_detail
 
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasTestTag
