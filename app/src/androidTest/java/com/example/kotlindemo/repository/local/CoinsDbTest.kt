@@ -92,37 +92,16 @@ class CoinsDbTest {
 
     private fun getCoins(): Array<Coin> {
         return arrayOf(
-            Coin("id1234", isActive = true, isNew = false, name = "Name", rank = 1, symbol = "nme", type = "type")
+            Coin(
+                "id1234",
+                isActive = true,
+                isNew = false,
+                name = "Name",
+                rank = 1,
+                symbol = "nme",
+                type = "type"
+            )
         )
-    }
-
-    private fun verifyCoinDetails(coinDetails: CoinDetail) {
-        assertEquals("description", coinDetails.description)
-        assertEquals("development_status", coinDetails.developmentStatus)
-        assertEquals("first_data_at", coinDetails.firstDataAt)
-        assertEquals(true, coinDetails.hardwareWallet)
-        assertEquals("hash_algorithm", coinDetails.hashAlgorithm)
-        assertEquals("id1234", coinDetails.id)
-        assertEquals(true, coinDetails.isActive)
-        assertEquals(true, coinDetails.isNew)
-        assertEquals("last_data_at", coinDetails.lastDataAt)
-        assertEquals("youtube", coinDetails.links?.youtube?.get(0))
-        var linkExtended = coinDetails.linksExtended?.get(0)
-        assertEquals("www.url.com", linkExtended?.url)
-        assertEquals(5, linkExtended?.stats?.contributors)
-        assertEquals(10, linkExtended?.stats?.followers)
-        assertEquals("message", coinDetails.message)
-        assertEquals("name", coinDetails.name)
-        assertEquals(true, coinDetails.openSource)
-        assertEquals("org_structure", coinDetails.orgStructure)
-        assertEquals("proof_type", coinDetails.proofType)
-        assertEquals(1, coinDetails.rank)
-        assertEquals("started_at", coinDetails.startedAt)
-        assertEquals("symbol", coinDetails.symbol)
-        assertEquals("Tag", coinDetails.tags?.get(0)?.name)
-        assertEquals("Team", coinDetails.team?.get(0)?.name)
-        assertEquals("type", coinDetails.type)
-        assertEquals("link", coinDetails.whitepaper?.link)
     }
 
     private fun getCoinDetails(): CoinDetail = CoinDetail(
@@ -135,8 +114,24 @@ class CoinsDbTest {
         isActive = true,
         isNew = true,
         lastDataAt = "last_data_at",
-        links = Links(youtube = listOf("youtube")),
-        linksExtended = listOf(LinksExtended(stats = Stats(contributors = 5, followers = 10), url = "www.url.com")),
+        links = Links(
+            explorer = listOf("explorer"),
+            facebook = listOf("facebook"),
+            reddit = listOf("reddit"),
+            sourceCode = listOf("source_code"),
+            website = listOf("website"),
+            youtube = listOf("youtube")
+        ),
+        linksExtended = listOf(
+            LinksExtended(
+                stats = Stats(
+                    contributors = 5,
+                    followers = 10,
+                    stars = 15,
+                    subscribers = 20
+                ), type = "type", url = "www.url.com"
+            )
+        ),
         message = "message",
         name = "name",
         openSource = true,
@@ -145,9 +140,68 @@ class CoinsDbTest {
         rank = 1,
         startedAt = "started_at",
         symbol = "symbol",
-        tags = listOf(Tag(name = "Tag")),
-        team = listOf(Team(name = "Team")),
+        tags = listOf(Tag(id = "tagId", name = "tagName", coinCounter = 1, icoCounter = 5)),
+        team = listOf(Team(id = "teamId", name = "teamName", position = "teamPosition")),
         type = "type",
-        whitepaper = Whitepaper(link = "link"),
+        whitepaper = Whitepaper(link = "link", thumbnail = "thumbnail"),
     )
+
+    private fun verifyCoinDetails(coinDetails: CoinDetail) {
+        assertEquals("description", coinDetails.description)
+        assertEquals("development_status", coinDetails.developmentStatus)
+        assertEquals("first_data_at", coinDetails.firstDataAt)
+        assertEquals(true, coinDetails.hardwareWallet)
+        assertEquals("hash_algorithm", coinDetails.hashAlgorithm)
+        assertEquals("id1234", coinDetails.id)
+        assertEquals(true, coinDetails.isActive)
+        assertEquals(true, coinDetails.isNew)
+        assertEquals("last_data_at", coinDetails.lastDataAt)
+        coinDetails.links?.let { verifyLinks(it) } ?: fail()
+        coinDetails.linksExtended?.let { verifyLinksExtended(it) } ?: fail()
+        assertEquals("message", coinDetails.message)
+        assertEquals("name", coinDetails.name)
+        assertEquals(true, coinDetails.openSource)
+        assertEquals("org_structure", coinDetails.orgStructure)
+        assertEquals("proof_type", coinDetails.proofType)
+        assertEquals(1, coinDetails.rank)
+        assertEquals("started_at", coinDetails.startedAt)
+        assertEquals("symbol", coinDetails.symbol)
+        coinDetails.tags?.let { verifyTags(it) } ?: fail()
+        coinDetails.team?.let { verifyTeams(it) } ?: fail()
+        assertEquals("type", coinDetails.type)
+        assertEquals("link", coinDetails.whitepaper?.link)
+        assertEquals("thumbnail", coinDetails.whitepaper?.thumbnail)
+    }
+
+    private fun verifyTeams(teams: List<Team>) {
+        assertEquals("teamName", teams[0].name)
+        assertEquals("teamId", teams[0].id)
+        assertEquals("teamPosition", teams[0].position)
+    }
+
+    private fun verifyTags(tags: List<Tag>) {
+        assertEquals("tagId", tags[0].id)
+        assertEquals("tagName", tags[0].name)
+        assertEquals(5, tags[0].icoCounter)
+        assertEquals(1, tags[0].coinCounter)
+    }
+
+    private fun verifyLinksExtended(extended: List<LinksExtended>) {
+        val linkExtended = extended[0]
+        assertEquals("www.url.com", linkExtended.url)
+        assertEquals("type", linkExtended.type)
+        assertEquals(5, linkExtended.stats.contributors)
+        assertEquals(10, linkExtended.stats.followers)
+        assertEquals(15, linkExtended.stats.stars)
+        assertEquals(20, linkExtended.stats.subscribers)
+    }
+
+    private fun verifyLinks(links: Links) {
+        assertEquals("explorer", links.explorer[0])
+        assertEquals("facebook", links.facebook[0])
+        assertEquals("reddit", links.reddit[0])
+        assertEquals("source_code", links.sourceCode[0])
+        assertEquals("website", links.website[0])
+        assertEquals("youtube", links.youtube[0])
+    }
 }

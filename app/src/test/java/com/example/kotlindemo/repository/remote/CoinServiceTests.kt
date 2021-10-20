@@ -107,14 +107,14 @@ class CoinServiceTests {
     private fun verifyTags(tags: List<Tag>) {
         assertEquals("segwit", tags[0].id)
         assertEquals("Segwit", tags[0].name)
-        assertEquals(1, tags[0].ico_counter)
-        assertEquals(11, tags[0].coin_counter)
+        assertEquals(1, tags[0].icoCounter)
+        assertEquals(11, tags[0].coinCounter)
     }
 
     private fun verifyLinksExtended(extended: List<LinksExtended>) {
         assertEquals("https://bitcoin.org/en/blog", extended[0].url)
         assertEquals("blog", extended[0].type)
-        var stats = extended[0].stats
+        val stats = extended[0].stats
         assertEquals(5, stats.contributors)
         assertEquals(10, stats.followers)
         assertEquals(15, stats.stars)
@@ -122,6 +122,12 @@ class CoinServiceTests {
     }
 
     private fun verifyLinks(links: Links) {
-        assertEquals("https://www.youtube.com/watch?v=Gc2en3nHxA4&", links.youtube?.get(0))
+        assertEquals("https://blockchain.com/explorer", links.explorer[1])
+        assertEquals("https://www.facebook.com/bitcoins/", links.facebook[0])
+        assertEquals("https://www.reddit.com/r/bitcoin", links.reddit[0])
+        assertEquals("https://github.com/bitcoin/bitcoin", links.sourceCode[0])
+        assertEquals("https://bitcoin.org/", links.website[0])
+        assertEquals("https://www.youtube.com/watch?v=Gc2en3nHxA4&", links.youtube[0])
+
     }
 }

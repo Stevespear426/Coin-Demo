@@ -1,8 +1,12 @@
 package com.example.kotlindemo.repository.model
 
+import com.google.gson.annotations.SerializedName
+
 data class Tag(
-    val coin_counter: Int = 0,
-    val ico_counter: Int = 0,
+    @SerializedName("coin_counter")
+    val coinCounter: Int = 0,
+    @SerializedName("ico_counter")
+    val icoCounter: Int = 0,
     val id: String = "",
     val name: String = ""
 )
