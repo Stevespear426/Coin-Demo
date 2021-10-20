@@ -3,6 +3,7 @@ package com.example.kotlindemo.viewmodel.coin_list
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -27,7 +28,7 @@ class CoinsListViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _state = mutableStateOf(CoinListState())
-    val state: State<CoinListState> = _state
+    private val state: State<CoinListState> = _state
 
     init {
         getCoins()
@@ -53,13 +54,18 @@ class CoinsListViewModel @Inject constructor(
     fun MainContent(onClick: (id: String) -> Unit) {
         val coinState = state.value
         Box(modifier = Modifier.fillMaxSize()) {
-            CoinList(coins = coinState.coins, onClick = onClick)
-            if (coinState.isLoading) {
-                CircularProgressIndicator(
-                    modifier = Modifier
-                        .align(Alignment.Center)
-                        .testTag("Spinner")
-                )
+            when {
+                coinState.coins.isNotEmpty() ->{
+                    CoinList(coins = coinState.coins, onClick = onClick)
+                }
+                coinState.isLoading -> {
+                    CircularProgressIndicator(
+                        modifier = Modifier
+                            .align(Alignment.Center)
+                            .testTag("Spinner")
+                    )
+                }
+                else -> Text(modifier = Modifier.testTag("Error"), text = "Coins not found")
             }
         }
     }

@@ -31,7 +31,7 @@ class CoinDetailViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _state = mutableStateOf(CoinDetailState(coinDetail = null))
-    val state: State<CoinDetailState> = _state
+    private val state: State<CoinDetailState> = _state
 
     init {
         savedStateHandle.get<String>(PARAM_COIN_ID)?.let { coinId ->

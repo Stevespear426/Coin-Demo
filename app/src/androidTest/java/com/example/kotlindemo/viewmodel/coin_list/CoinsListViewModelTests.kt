@@ -65,9 +65,31 @@ class CoinsListViewModelTests {
         spinner.assertIsDisplayed()
     }
 
+    @Test
+    fun mainContentUseCaseError() {
+        every { mockUseCase.invoke() } returns channelFlow {
+            send(Resource.Error<List<Coin>>(message = ""))
+        }
+        viewModel = CoinsListViewModel(mockUseCase)
+        composeTestRule.setContent {
+            viewModel.MainContent {}
+        }
+
+        val errorText = composeTestRule.onNode(hasTestTag("Error"), useUnmergedTree = true)
+        errorText.assertIsDisplayed()
+    }
+
     private fun getCoins(): List<Coin> {
         return listOf(
-            Coin("id1234", isActive = true, isNew = false, name = "Name", rank = 1, symbol = "nme", type = "type")
+            Coin(
+                "id1234",
+                isActive = true,
+                isNew = false,
+                name = "Name",
+                rank = 1,
+                symbol = "nme",
+                type = "type"
+            )
         )
     }
 }

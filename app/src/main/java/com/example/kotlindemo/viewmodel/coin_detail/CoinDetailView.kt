@@ -33,13 +33,18 @@ fun CoinDetailView(@PreviewParameter(SampleCoinDetail::class) coin: CoinDetail) 
             CoinTitleItem(coin)
             Spacer(modifier = Modifier.height(5.dp))
             Text(coin.description ?: "", style = MaterialTheme.typography.body2)
-            Spacer(modifier = Modifier.height(15.dp))
-            Text(text = "Tags", style = MaterialTheme.typography.h6)
-            Spacer(modifier = Modifier.height(5.dp))
-            coin.tags?.let { tags -> TagsGrid(tags) }
-            Spacer(modifier = Modifier.height(15.dp))
-            Text(text = "Team members", style = MaterialTheme.typography.h6)
-            Spacer(modifier = Modifier.height(5.dp))
+
+            coin.tags?.let { tags ->
+                Spacer(modifier = Modifier.height(15.dp))
+                Text(text = "Tags", style = MaterialTheme.typography.h6)
+                Spacer(modifier = Modifier.height(5.dp))
+                TagsGrid(tags)
+            }
+            coin.team?.let {
+                Spacer(modifier = Modifier.height(15.dp))
+                Text(text = "Team members", style = MaterialTheme.typography.h6)
+                Spacer(modifier = Modifier.height(5.dp))
+            }
         }
         coin.team?.let { team ->
             items(team) { member -> TeamItem(member) }
