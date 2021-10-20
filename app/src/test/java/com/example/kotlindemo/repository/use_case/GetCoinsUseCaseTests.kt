@@ -7,11 +7,11 @@ import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
 import io.mockk.mockk
-import junit.framework.Assert.assertEquals
-import junit.framework.Assert.assertTrue
 import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import java.io.IOException
@@ -21,10 +21,10 @@ import java.io.IOException
  */
 class GetCoinsUseCaseTests {
 
+    lateinit var subject: GetCoinsUseCase
+
     @MockK
     lateinit var mockCoinRepository: CoinRepository
-
-    lateinit var subject: GetCoinsUseCase
 
     @Before
     fun setUp() {

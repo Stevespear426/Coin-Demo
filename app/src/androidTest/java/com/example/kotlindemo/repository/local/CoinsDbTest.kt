@@ -107,7 +107,10 @@ class CoinsDbTest {
         assertEquals(true, coinDetails.is_new)
         assertEquals("last_data_at", coinDetails.last_data_at)
         assertEquals("youtube", coinDetails.links?.youtube?.get(0))
-        assertEquals("www.url.com", coinDetails.links_extended?.get(0)?.url)
+        var linkExtended = coinDetails.links_extended?.get(0)
+        assertEquals("www.url.com", linkExtended?.url)
+        assertEquals(5, linkExtended?.stats?.contributors)
+        assertEquals(10, linkExtended?.stats?.followers)
         assertEquals("message", coinDetails.message)
         assertEquals("name", coinDetails.name)
         assertEquals(true, coinDetails.open_source)
@@ -133,7 +136,7 @@ class CoinsDbTest {
         is_new = true,
         last_data_at = "last_data_at",
         links = Links(youtube = listOf("youtube")),
-        links_extended = listOf(LinksExtended(url = "www.url.com")),
+        links_extended = listOf(LinksExtended(stats = Stats(contributors = 5, followers = 10), url = "www.url.com")),
         message = "message",
         name = "name",
         open_source = true,

@@ -5,9 +5,9 @@ import com.example.kotlindemo.repository.model.*
 import com.example.kotlindemo.repository.remote.CoinService
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
-import junit.framework.Assert.assertEquals
-import junit.framework.Assert.assertTrue
 import kotlinx.coroutines.runBlocking
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 
