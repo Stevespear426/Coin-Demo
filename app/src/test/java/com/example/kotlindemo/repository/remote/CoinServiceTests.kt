@@ -9,7 +9,7 @@ import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import java.net.HttpURLConnection
 
 class CoinServiceTests {
@@ -22,7 +22,7 @@ class CoinServiceTests {
         mockWebServer.start()
         subject = Retrofit.Builder()
             .baseUrl(mockWebServer.url("/"))
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create())
             .build()
             .create(CoinService::class.java)
     }

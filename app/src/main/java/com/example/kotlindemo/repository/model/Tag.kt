@@ -1,11 +1,13 @@
 package com.example.kotlindemo.repository.model
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class Tag(
-    @SerializedName("coin_counter")
+    @Json(name = "coin_counter")
     val coinCounter: Int = 0,
-    @SerializedName("ico_counter")
+    @Json(name = "ico_counter")
     val icoCounter: Int = 0,
     val id: String = "",
     val name: String = ""

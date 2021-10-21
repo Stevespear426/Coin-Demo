@@ -2,15 +2,17 @@ package com.example.kotlindemo.repository.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 @Entity(tableName = "coins")
 data class Coin(
     @PrimaryKey
     val id: String,
-    @SerializedName("is_active")
+    @Json(name = "is_active")
     val isActive: Boolean,
-    @SerializedName("is_new")
+    @Json(name = "is_new")
     val isNew: Boolean,
     val name: String,
     val rank: Int,

@@ -2,42 +2,44 @@ package com.example.kotlindemo.repository.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 import java.util.*
 import java.util.concurrent.TimeUnit
 
+@JsonClass(generateAdapter = true)
 @Entity(tableName = "coin_details")
 data class CoinDetail(
     val description: String? = null,
-    @SerializedName("development_status")
+    @Json(name = "development_status")
     val developmentStatus: String? = null,
-    @SerializedName("first_data_at")
+    @Json(name = "first_data_at")
     val firstDataAt: String? = null,
-    @SerializedName("hardware_wallet")
+    @Json(name = "hardware_wallet")
     val hardwareWallet: Boolean? = null,
-    @SerializedName("hash_algorithm")
+    @Json(name = "hash_algorithm")
     val hashAlgorithm: String? = null,
     @PrimaryKey
     val id: String = "",
-    @SerializedName("is_active")
+    @Json(name = "is_active")
     val isActive: Boolean? = null,
-    @SerializedName("is_new")
+    @Json(name = "is_new")
     val isNew: Boolean? = null,
-    @SerializedName("last_data_at")
+    @Json(name = "last_data_at")
     val lastDataAt: String? = null,
     val links: Links? = null,
-    @SerializedName("links_extended")
+    @Json(name = "links_extended")
     val linksExtended: List<LinksExtended>? = null,
     val message: String? = null,
     val name: String? = null,
-    @SerializedName("open_source")
+    @Json(name = "open_source")
     val openSource: Boolean? = null,
-    @SerializedName("org_structure")
+    @Json(name = "org_structure")
     val orgStructure: String? = null,
-    @SerializedName("proof_type")
+    @Json(name = "proof_type")
     val proofType: String? = null,
     val rank: Int? = null,
-    @SerializedName("started_at")
+    @Json(name = "started_at")
     val startedAt: String? = null,
     val symbol: String? = null,
     val tags: List<Tag>? = null,
