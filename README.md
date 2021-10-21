@@ -19,3 +19,5 @@ Api requests are with Retrofit
 Data storage is with Room
 
 Tests are using MockK
+
+Splash screen using core-splashscreen for Android 12 splash screen backward compat
