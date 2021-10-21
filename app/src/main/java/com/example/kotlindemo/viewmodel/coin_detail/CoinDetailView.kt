@@ -65,8 +65,8 @@ class SampleCoinDetail : PreviewParameterProvider<CoinDetail> {
                 Tag(name = "Awesome")
             ),
             team = listOf(
-                Team(name = "Steve Spear", position = "Dev"),
-                Team(name = "Kayla Spear", position = "Wife")
+                Team(name = "John Doe", position = "Dev"),
+                Team(name = "Jane Doe", position = "Wife")
             )
         )
     )

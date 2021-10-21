@@ -12,6 +12,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -30,7 +31,8 @@ fun CoinItem(coin: Coin, onClick: (id: String) -> Unit) {
             modifier = Modifier
                 .fillMaxWidth()
                 .clickable { onClick(coin.id) }
-                .padding(20.dp),
+                .padding(20.dp)
+                .testTag("Row"),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
@@ -39,13 +41,14 @@ fun CoinItem(coin: Coin, onClick: (id: String) -> Unit) {
                 style = MaterialTheme.typography.body1,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(1f).testTag("Main Text")
             )
             Text(
                 if (coin.isActive) "Active" else "Inactive",
                 color = if (coin.isActive) Color.Green else Color.Red,
                 fontStyle = FontStyle.Italic,
                 style = MaterialTheme.typography.body2,
+                modifier = Modifier.testTag("Active Text")
             )
         }
     }

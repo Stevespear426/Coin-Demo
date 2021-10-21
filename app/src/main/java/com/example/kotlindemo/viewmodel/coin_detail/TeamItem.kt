@@ -20,7 +20,7 @@ fun TeamItem(@PreviewParameter(SampleTeam::class) member: Team) {
 
 class SampleTeam : PreviewParameterProvider<Team> {
     override val values = sequenceOf(
-        Team(id = "", name = "Steve Spear", position = "Dev")
+        Team(id = "", name = "John Doe", position = "Dev")
     )
     override val count: Int = 1
 }
