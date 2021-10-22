@@ -82,3 +82,13 @@ dependencies {
 kapt {
     correctErrorTypes = true
 }
+
+// Test Logging
+tasks.withType(Test::class.java) {
+    testLogging {
+        events = setOf(
+            org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED,
+            org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED,
+            org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED)
+    }
+}
