@@ -33,19 +33,19 @@ class GetCoinsUseCaseTests {
     }
 
     @Test
-    fun `Test Invoke with valid repository response`()  = runBlocking {
+    fun `Test Invoke with valid repository response`() = runBlocking {
         val mockCoins = mockk<List<Coin>>(relaxed = true)
         coEvery { mockCoinRepository.getCoins() } returns mockCoins
-        val result = subject.invoke().take(2).toList()
+        val result = subject().take(2).toList()
         assertTrue(result[0] is Resource.Loading)
         assertTrue(result[1] is Resource.Success)
         assertEquals(mockCoins, result[1].data)
     }
 
     @Test
-    fun `Test Invoke with exception`()  = runBlocking {
+    fun `Test Invoke with exception`() = runBlocking {
         coEvery { mockCoinRepository.getCoins() } throws IOException()
-        val result = subject.invoke().take(2).toList()
+        val result = subject().take(2).toList()
         assertTrue(result[0] is Resource.Loading)
         assertTrue(result[1] is Resource.Error)
     }

@@ -12,10 +12,12 @@ import dagger.hilt.android.testing.HiltAndroidTest
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
-import kotlinx.coroutines.flow.channelFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.flow
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import java.io.IOException
 
 @HiltAndroidTest
 class CoinsListViewModelTests {
@@ -39,8 +41,8 @@ class CoinsListViewModelTests {
 
     @Test
     fun mainContentUseCaseSuccess() {
-        every { mockUseCase.invoke() } returns channelFlow {
-            send(Resource.Success(getCoins()))
+        every { mockUseCase() } returns flow {
+            emit(Resource.Success(getCoins()))
         }
         viewModel = CoinsListViewModel(mockUseCase)
         composeTestRule.setContent {
@@ -53,8 +55,8 @@ class CoinsListViewModelTests {
 
     @Test
     fun mainContentUseCaseLoading() {
-        every { mockUseCase.invoke() } returns channelFlow {
-            send(Resource.Loading<List<Coin>>())
+        every { mockUseCase() } returns flow {
+            emit(Resource.Loading<List<Coin>>())
         }
         viewModel = CoinsListViewModel(mockUseCase)
         composeTestRule.setContent {
@@ -67,9 +69,9 @@ class CoinsListViewModelTests {
 
     @Test
     fun mainContentUseCaseError() {
-        every { mockUseCase.invoke() } returns channelFlow {
-            send(Resource.Error<List<Coin>>(message = ""))
-        }
+        every { mockUseCase() } returns flow<Resource<List<Coin>>> {
+            throw IOException()
+        }.catch { e -> emit(Resource.Error(message = e?.localizedMessage ?: "Error")) }
         viewModel = CoinsListViewModel(mockUseCase)
         composeTestRule.setContent {
             viewModel.MainContent {}

@@ -14,10 +14,12 @@ import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.impl.annotations.RelaxedMockK
-import kotlinx.coroutines.flow.channelFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.flow
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import java.io.IOException
 
 @HiltAndroidTest
 class CoinDetailViewModelTests {
@@ -45,8 +47,8 @@ class CoinDetailViewModelTests {
 
     @Test
     fun mainContentUseCaseSuccess() {
-        every { mockUseCase.invoke(any()) } returns channelFlow {
-            send(Resource.Success(getCoinDetails()))
+        every { mockUseCase(any()) } returns flow {
+            emit(Resource.Success(getCoinDetails()))
         }
         viewModel = CoinDetailViewModel(mockUseCase, mockSavedStateHandle)
         composeTestRule.setContent {
@@ -59,8 +61,8 @@ class CoinDetailViewModelTests {
 
     @Test
     fun mainContentUseCaseLoading() {
-        every { mockUseCase.invoke(any()) } returns channelFlow {
-            send(Resource.Loading<CoinDetail?>())
+        every { mockUseCase(any()) } returns flow {
+            emit(Resource.Loading<CoinDetail?>())
         }
         viewModel = CoinDetailViewModel(mockUseCase, mockSavedStateHandle)
         composeTestRule.setContent {
@@ -73,9 +75,9 @@ class CoinDetailViewModelTests {
 
     @Test
     fun mainContentUseCaseError() {
-        every { mockUseCase.invoke(any()) } returns channelFlow {
-            send(Resource.Error<CoinDetail?>(message = ""))
-        }
+        every { mockUseCase(any()) } returns flow<Resource<CoinDetail?>> {
+            throw IOException()
+        }.catch { e -> emit(Resource.Error(message = e?.localizedMessage ?: "Error")) }
         viewModel = CoinDetailViewModel(mockUseCase, mockSavedStateHandle)
         composeTestRule.setContent {
             viewModel.MainContent()

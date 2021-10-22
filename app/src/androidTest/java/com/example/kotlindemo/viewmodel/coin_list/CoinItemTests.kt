@@ -70,7 +70,7 @@ class CoinItemTests {
         val row = composeTestRule.onNode(hasTestTag("Row"), useUnmergedTree = true)
         row.assertIsDisplayed()
         row.performClick()
-        verify { mockClick.invoke(eq("id1234")) }
+        verify { mockClick(eq("id1234")) }
     }
 
     private fun getCoin(): Coin = Coin(
