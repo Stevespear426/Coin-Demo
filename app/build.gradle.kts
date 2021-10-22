@@ -70,7 +70,6 @@ dependencies {
     implementation(Deps.Compose.ui)
     implementation(Deps.Compose.material)
     implementation(Deps.Compose.toolingPreview)
-    implementation(Deps.Compose.liveData) // TODO remove?
     implementation(Deps.Compose.navigation)
     implementation(Deps.Compose.flowLayout)
     debugImplementation(Deps.Compose.uiTooling)
@@ -103,7 +102,7 @@ dependencies {
     testImplementation(Deps.Android.mockk)
     androidTestImplementation(Deps.Android.mockkAndroid)
     testImplementation(Deps.Android.kotlinCoroutinesTest)
-    androidTestImplementation(Deps.Android.espresso) //TODO remove?
+    androidTestImplementation(Deps.Android.espresso)
 
 }
 

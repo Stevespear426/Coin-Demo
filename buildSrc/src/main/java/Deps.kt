@@ -16,8 +16,6 @@ object Deps {
         const val junit4 = "junit:junit:4.13.2"
         const val extJunit4 = "androidx.test.ext:junit:1.1.3"
         const val kotlinCoroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2"
-
-        //TODO remove?
         const val espresso = "androidx.test.espresso:espresso-core:3.4.0"
     }
 
@@ -30,10 +28,6 @@ object Deps {
         const val flowLayout = "com.google.accompanist:accompanist-flowlayout:0.20.0"
         const val uiTooling = "androidx.compose.ui:ui-tooling:$version"
         const val uiTestJunit4 = "androidx.compose.ui:ui-test-junit4:$version"
-
-        //TODO remove?
-        const val liveData = "androidx.compose.runtime:runtime-livedata:$version"
-
     }
 
     object Hilt {
