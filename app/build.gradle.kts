@@ -2,16 +2,19 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
-    id("dagger.hilt.android.plugin")
+    id("hilt")
+    id("compose")
+    id("retrofit")
+    id("room")
 }
 
 android {
-    compileSdk = Deps.Android.compileSdk
+    compileSdk = Deps.compileSdk
 
     defaultConfig {
         applicationId = "com.example.kotlindemo"
-        minSdk = Deps.Android.minSdk
-        targetSdk = Deps.Android.targetSdk
+        minSdk = Deps.minSdk
+        targetSdk = Deps.targetSdk
         versionCode = 1
         versionName = "1.0"
 
@@ -38,7 +41,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = rootProject.extra.get("compose_version") as String
+        kotlinCompilerExtensionVersion = ComposePlugin.Compose.version
     }
     packagingOptions {
         resources {
@@ -59,50 +62,20 @@ android {
 dependencies {
 
     // Android and Kotlin
-    implementation(Deps.Android.coreKtx)
-    implementation(Deps.Android.appCompat)
-    implementation(Deps.Android.material)
-    implementation(Deps.Android.activityCompose)
-    implementation(Deps.Android.coreSplashScreen)
-    implementation(Deps.Android.navigationRuntime)
-
-    // Compose
-    implementation(Deps.Compose.ui)
-    implementation(Deps.Compose.material)
-    implementation(Deps.Compose.toolingPreview)
-    implementation(Deps.Compose.navigation)
-    implementation(Deps.Compose.flowLayout)
-    debugImplementation(Deps.Compose.uiTooling)
-    androidTestImplementation(Deps.Compose.uiTestJunit4)
-
-    //Hilt
-    implementation(Deps.Hilt.hilt)
-    implementation(Deps.Hilt.navigationCompose)
-    kapt(Deps.Hilt.compiler)
-    kapt(Deps.Hilt.androidCompiler)
-    androidTestImplementation(Deps.Hilt.androidTesting)
-    kaptAndroidTest(Deps.Hilt.androidCompiler)
-
-    // Retrofit
-    implementation(Deps.Retrofit.retrofit)
-    implementation(Deps.Retrofit.moshiConverter)
-    implementation(Deps.Retrofit.moshi)
-    implementation(Deps.Retrofit.moshiKotlin)
-    kapt(Deps.Retrofit.moshiKotlinCodeGen)
-    testImplementation(Deps.Retrofit.mockwebserver)
-
-    // Room Database
-    implementation(Deps.Room.runtime)
-    implementation(Deps.Room.ktx)
-    kapt(Deps.Room.compiler)
+    implementation(Deps.coreKtx)
+    implementation(Deps.appCompat)
+    implementation(Deps.material)
+    implementation(Deps.activityCompose)
+    implementation(Deps.coreSplashScreen)
+    implementation(Deps.navigationRuntime)
 
     //Testing
-    androidTestImplementation(Deps.Android.extJunit4)
-    testImplementation(Deps.Android.junit4)
-    testImplementation(Deps.Android.mockk)
-    androidTestImplementation(Deps.Android.mockkAndroid)
-    testImplementation(Deps.Android.kotlinCoroutinesTest)
-    androidTestImplementation(Deps.Android.espresso)
+    androidTestImplementation(Deps.extJunit4)
+    testImplementation(Deps.junit4)
+    testImplementation(Deps.mockk)
+    androidTestImplementation(Deps.mockkAndroid)
+    testImplementation(Deps.kotlinCoroutinesTest)
+    androidTestImplementation(Deps.espresso)
 
 }
 
