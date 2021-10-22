@@ -6,7 +6,7 @@ Simple app too retrieve and display info on some crypto coins.
 
 
 
-100% Kotlin
+100% Kotlin including Gradle files
 
 Dependency injection using Hilt
 
