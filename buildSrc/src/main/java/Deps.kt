@@ -1,11 +1,15 @@
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+
 object Deps {
 
     const val compileSdk = 31
     const val targetSdk = 31
     const val minSdk = 28
+    private const val kotlinVersion = "1.5.31"
 
     const val gradle = "com.android.tools.build:gradle:7.0.3"
-    const val kotlinGradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31"
+    const val kotlinGradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+    const val kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
     const val hiltGradle = "com.google.dagger:hilt-android-gradle-plugin:2.38.1"
 
     const val activityCompose = "androidx.activity:activity-compose:1.4.0-rc01"
@@ -21,8 +25,5 @@ object Deps {
     const val kotlinCoroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2"
     const val espresso = "androidx.test.espresso:espresso-core:3.4.0"
 
-    val testLogSets = setOf(
-        org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED,
-        org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED,
-        org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED)
+    val testLogSets = setOf(TestLogEvent.PASSED, TestLogEvent.SKIPPED, TestLogEvent.FAILED)
 }
