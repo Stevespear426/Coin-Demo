@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.kotlindemo.repository.model.Coin
 
@@ -41,7 +42,9 @@ fun CoinItem(coin: Coin, onClick: (id: String) -> Unit) {
                 style = MaterialTheme.typography.body1,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
-                modifier = Modifier.weight(1f).testTag("Main Text")
+                modifier = Modifier
+                    .weight(1f)
+                    .testTag("Main Text")
             )
             Text(
                 if (coin.isActive) "Active" else "Inactive",
@@ -52,4 +55,19 @@ fun CoinItem(coin: Coin, onClick: (id: String) -> Unit) {
             )
         }
     }
+}
+
+@Preview
+@Composable
+fun Preview() {
+    val coin = Coin(
+        rank = 1,
+        name = "Coin",
+        symbol = "cn",
+        isActive = true,
+        isNew = false,
+        id = "cn",
+        type = "coin"
+    )
+    CoinItem(coin = coin, onClick = {})
 }

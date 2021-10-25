@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Kotlin Demo</string>
+
+    <string name="onboarding_title_1">Welcome to my Demo App!</string>
+    <string name="onboarding_body_1">In this app I experiment with new versions of Android tools, UI components, 3rd party libraries, etc…</string>
+    <string name="onboarding_title_2">What\'s happening in here?</string>
+    <string name="onboarding_body_2">The basic functionality on the app is to retrieve cryptocurrency data via http rest api and cache the data to disk for future use.\n\nThe architecture is MVVM, utilizing CLEAN principles, and heavily relies on Unit and Integration testing.  </string>
+    <string name="onboarding_title_3">Enjoy!</string>
+    <string name="onboarding_body_3">Thanks for checking out this constantly evolving Demo.</string>
 </resources>

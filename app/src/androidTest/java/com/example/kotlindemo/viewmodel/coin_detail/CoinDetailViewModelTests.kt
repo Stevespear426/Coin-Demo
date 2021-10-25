@@ -5,11 +5,13 @@ import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.lifecycle.SavedStateHandle
 import com.example.kotlindemo.common.Resource
+import com.example.kotlindemo.hilt.AppModule
 import com.example.kotlindemo.presentation.MainActivity
 import com.example.kotlindemo.repository.model.*
 import com.example.kotlindemo.repository.use_case.GetCoinDetailUseCase
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
+import dagger.hilt.android.testing.UninstallModules
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
@@ -21,6 +23,7 @@ import org.junit.Rule
 import org.junit.Test
 import java.io.IOException
 
+@UninstallModules(AppModule::class)
 @HiltAndroidTest
 class CoinDetailViewModelTests {
 
@@ -40,8 +43,8 @@ class CoinDetailViewModelTests {
 
     @Before
     fun setUp() {
-        hiltRule.inject()
         MockKAnnotations.init(this, relaxUnitFun = true)
+        hiltRule.inject()
         every { mockSavedStateHandle.get<String>(any()) } returns ""
     }
 

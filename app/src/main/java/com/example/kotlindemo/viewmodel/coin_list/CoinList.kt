@@ -28,3 +28,4 @@ fun CoinList(coins: List<Coin>, onClick: (id: String) -> Unit) {
         items(coins) { coin -> CoinItem(coin, onClick) }
     }
 }
+

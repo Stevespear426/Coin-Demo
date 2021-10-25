@@ -6,6 +6,7 @@ object Deps {
     const val targetSdk = 31
     const val minSdk = 28
     private const val kotlinVersion = "1.5.31"
+    private const val accompanistVersion = "0.20.0"
 
     const val gradle = "com.android.tools.build:gradle:7.0.3"
     const val kotlinGradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
@@ -18,6 +19,12 @@ object Deps {
     const val coreSplashScreen = "androidx.core:core-splashscreen:1.0.0-alpha02"
     const val material = "com.google.android.material:material:1.4.0"
     const val navigationRuntime = "androidx.navigation:navigation-runtime-ktx:2.3.5"
+
+    const val datastore = "androidx.datastore:datastore-preferences:1.0.0"
+    const val pager = "com.google.accompanist:accompanist-pager:$accompanistVersion"
+    const val pagerIndicators = "com.google.accompanist:accompanist-pager-indicators:$accompanistVersion"
+
+
     const val mockk = "io.mockk:mockk:1.12.0"
     const val mockkAndroid = "io.mockk:mockk-android:1.12.0"
     const val junit4 = "junit:junit:4.13.2"

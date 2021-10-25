@@ -25,6 +25,12 @@ android {
     }
 }
 
+dependencies {
+    implementation(Deps.datastore)
+    implementation(Deps.pager)
+    implementation(Deps.pagerIndicators)
+}
+
 // Test Logging
 tasks.withType(Test::class.java) {
     testLogging {

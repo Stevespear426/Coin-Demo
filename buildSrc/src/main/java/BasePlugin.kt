@@ -28,6 +28,7 @@ class BasePlugin : Plugin<Project> {
             }
             (this as ExtensionAware).extensions.configure<KotlinJvmOptions>("kotlinOptions") {
                 jvmTarget = "11"
+                freeCompilerArgs = freeCompilerArgs + "-Xopt-in=kotlin.RequiresOptIn"
             }
             packagingOptions {
                 resources {
