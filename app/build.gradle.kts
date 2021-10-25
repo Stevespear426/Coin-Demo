@@ -37,12 +37,6 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = ComposePlugin.Compose.version
-    }
     packagingOptions {
         resources {
             excludes.add("**/attach_hotspot_windows.dll")
@@ -86,9 +80,6 @@ kapt {
 // Test Logging
 tasks.withType(Test::class.java) {
     testLogging {
-        events = setOf(
-            org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED,
-            org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED,
-            org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED)
+        events = Deps.testLogSets
     }
 }

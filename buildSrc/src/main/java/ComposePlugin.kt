@@ -1,10 +1,12 @@
+import com.android.build.api.dsl.ApplicationExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
 class ComposePlugin : Plugin<Project> {
     object Compose {
-       const val version = "1.1.0-alpha06"
+        const val version = "1.1.0-alpha06"
     }
+
     private val version = Compose.version
     private val ui = "androidx.compose.ui:ui:$version"
     private val material = "androidx.compose.material:material:$version"
@@ -15,6 +17,11 @@ class ComposePlugin : Plugin<Project> {
     private val uiTestJunit4 = "androidx.compose.ui:ui-test-junit4:$version"
 
     override fun apply(project: Project) {
+
+        project.extensions.configure<ApplicationExtension>("android") {
+            this.buildFeatures.compose = true
+            this.composeOptions.kotlinCompilerExtensionVersion = version
+        }
         project.dependencies.add("implementation", ui)
         project.dependencies.add("implementation", material)
         project.dependencies.add("implementation", toolingPreview)
