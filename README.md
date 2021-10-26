@@ -16,7 +16,7 @@ Navigation is Jetpack Navigation
 
 Api requests are with Retrofit
 
-Data storage is with Room
+Data storage is with Room and DataStore
 
 Tests are using MockK
 
