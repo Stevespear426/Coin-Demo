@@ -33,7 +33,7 @@ fun CoinItem(coin: Coin, onClick: (id: String) -> Unit) {
                 .fillMaxWidth()
                 .clickable { onClick(coin.id) }
                 .padding(20.dp)
-                .testTag("Row"),
+                .testTag("Test ${coin.name}"),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(

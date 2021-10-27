@@ -49,7 +49,7 @@ class CoinsListViewModelTests {
             viewModel.MainContent {}
         }
 
-        val lColumn = composeTestRule.onNode(hasTestTag("LazyColumnTestId"), useUnmergedTree = true)
+        val lColumn = composeTestRule.onNode(hasTestTag("Test CoinList"), useUnmergedTree = true)
         lColumn.assertIsDisplayed()
     }
 
