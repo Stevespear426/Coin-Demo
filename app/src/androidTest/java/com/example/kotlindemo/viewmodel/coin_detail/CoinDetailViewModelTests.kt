@@ -58,8 +58,8 @@ class CoinDetailViewModelTests {
             viewModel.MainContent()
         }
 
-        val lColumn = composeTestRule.onNode(hasTestTag("MainColumn"), useUnmergedTree = true)
-        lColumn.assertIsDisplayed()
+        val main = composeTestRule.onNode(hasTestTag("Test CoinDetailView"), useUnmergedTree = true)
+        main.assertIsDisplayed()
     }
 
     @Test

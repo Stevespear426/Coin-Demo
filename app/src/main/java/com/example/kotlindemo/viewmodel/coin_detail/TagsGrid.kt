@@ -9,6 +9,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
@@ -25,6 +26,7 @@ fun TagsGrid(@PreviewParameter(SampleTags::class) tags: List<Tag>) {
         crossAxisSpacing = 10.dp,
         modifier = Modifier
             .fillMaxWidth()
+            .testTag("Test TagsGrid")
     ) {
         tags.forEach { tag ->
             Surface(
@@ -34,7 +36,7 @@ fun TagsGrid(@PreviewParameter(SampleTags::class) tags: List<Tag>) {
                 color = Color.Green
             ) {
                 Text(
-                    modifier = Modifier.padding(all = 10.dp),
+                    modifier = Modifier.padding(all = 10.dp).testTag("Test Tag ${tag.name}"),
                     text = tag.name,
                     color = Color.White,
                     fontSize = 12.sp
@@ -55,5 +57,4 @@ class SampleTags : PreviewParameterProvider<List<Tag>> {
         )
     )
     override val count: Int = 1
-
 }

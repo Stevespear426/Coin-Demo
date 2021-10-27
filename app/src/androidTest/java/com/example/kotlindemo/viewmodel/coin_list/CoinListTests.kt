@@ -1,7 +1,10 @@
 package com.example.kotlindemo.viewmodel.coin_list
 
-import androidx.compose.ui.test.*
+import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performTextInput
 import com.example.kotlindemo.presentation.MainActivity
 import com.example.kotlindemo.repository.model.Coin
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -33,8 +36,8 @@ class CoinListTests {
         composeTestRule.setContent {
             CoinList(list, mockk())
         }
-        val mainText = composeTestRule.onNode(hasTestTag("Test CoinList"), useUnmergedTree = true)
-        mainText.assertIsDisplayed()
+        val main = composeTestRule.onNode(hasTestTag("Test CoinList"), useUnmergedTree = true)
+        main.assertIsDisplayed()
 
         val item1 =
             composeTestRule.onNode(hasTestTag("Test ${list[0].name}"), useUnmergedTree = true)
@@ -55,8 +58,8 @@ class CoinListTests {
         composeTestRule.setContent {
             CoinList(list, mockk())
         }
-        val mainText = composeTestRule.onNode(hasTestTag("Test CoinList"), useUnmergedTree = true)
-        mainText.assertIsDisplayed()
+        val main = composeTestRule.onNode(hasTestTag("Test CoinList"), useUnmergedTree = true)
+        main.assertIsDisplayed()
 
         val searchBar = composeTestRule.onNode(hasTestTag("Test SearchBar"), useUnmergedTree = true)
         searchBar.assertIsDisplayed().performClick().performTextInput("coin")
