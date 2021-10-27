@@ -5,9 +5,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.example.kotlindemo.ui.theme.KotlinDemoTheme
+import com.example.kotlindemo.ui.theme.DemoTheme
 import com.example.kotlindemo.viewmodel.MainActivityViewModel
-import com.google.accompanist.pager.ExperimentalPagerApi
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -19,7 +18,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         installSplashScreen()
         setContent {
-            KotlinDemoTheme {
+            DemoTheme {
                 viewModel.MainContent()
             }
         }

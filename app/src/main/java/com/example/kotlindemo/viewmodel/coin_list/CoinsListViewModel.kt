@@ -53,7 +53,7 @@ class CoinsListViewModel @Inject constructor(
     @Composable
     fun MainContent(onClick: (id: String) -> Unit) {
         val coinState = state.value
-        Box(Modifier.fillMaxSize()) {
+        Box(Modifier.fillMaxSize().testTag("Test CoinListViewModel MainContent")) {
             when {
                 coinState.coins.isNotEmpty() -> CoinList(coinState.coins, onClick)
                 coinState.isLoading -> {

@@ -7,8 +7,6 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import javax.inject.Inject
-import javax.inject.Singleton
 
 class AppPrefsImpl(private val context: Application) : AppPrefs {
 
@@ -26,7 +24,6 @@ class AppPrefsImpl(private val context: Application) : AppPrefs {
     override suspend fun clear() {
         context.dataStore.edit { it.clear() }
     }
-
 
     companion object {
         private val ONBOARDING_KEY = booleanPreferencesKey("onboarding")

@@ -40,7 +40,7 @@ class OnboardingViewModelTests {
             viewModel.MainContent()
         }
 
-        val onboarding = composeTestRule.onNode(hasTestTag("Onboarding"), useUnmergedTree = true)
+        val onboarding = composeTestRule.onNode(hasTestTag("Test Onboarding"), useUnmergedTree = true)
         onboarding.assertIsDisplayed()
     }
 }

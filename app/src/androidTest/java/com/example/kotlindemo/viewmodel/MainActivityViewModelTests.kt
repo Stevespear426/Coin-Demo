@@ -45,7 +45,8 @@ class MainActivityViewModelTests {
             viewModel.MainContent()
         }
 
-        val onboarding = composeTestRule.onNode(hasTestTag("Onboarding"), useUnmergedTree = true)
+        val onboarding =
+            composeTestRule.onNode(hasTestTag("Test Onboarding"), useUnmergedTree = true)
         onboarding.assertIsDisplayed()
     }
 
@@ -58,7 +59,7 @@ class MainActivityViewModelTests {
             viewModel.MainContent()
         }
 
-        val navHost = composeTestRule.onNode(hasTestTag("NavHost"), useUnmergedTree = true)
+        val navHost = composeTestRule.onNode(hasTestTag("Test NavHost"), useUnmergedTree = true)
         navHost.assertIsDisplayed()
     }
 }

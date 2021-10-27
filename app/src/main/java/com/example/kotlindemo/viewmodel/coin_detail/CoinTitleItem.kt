@@ -28,8 +28,7 @@ fun CoinTitleItem(@PreviewParameter(SampleCoin::class) coin: CoinDetail) {
     ) {
         Text(
             "${coin.rank}. ${coin.name} (${coin.symbol})",
-            color = Color.Black,
-            style = MaterialTheme.typography.h6,
+            style = MaterialTheme.typography.h6.copy(color = MaterialTheme.colors.onSurface),
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier.weight(1f).testTag("Main Text")

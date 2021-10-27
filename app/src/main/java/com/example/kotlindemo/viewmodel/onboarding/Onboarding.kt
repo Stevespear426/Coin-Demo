@@ -21,8 +21,7 @@ fun Onboarding(onComplete: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Color.White)
-            .testTag("Onboarding")
+            .testTag("Test Onboarding")
     ) {
         val items = OnboardingItemData.items
         val state = rememberPagerState()

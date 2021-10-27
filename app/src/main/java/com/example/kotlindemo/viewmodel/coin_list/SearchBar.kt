@@ -2,8 +2,7 @@ package com.example.kotlindemo.viewmodel.coin_list
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
@@ -21,6 +20,7 @@ fun SearchBar(text: String, onValueChange: (id: String) -> Unit) {
         label = { Text("Search") },
         placeholder = { Text("Coin") },
         maxLines = 1,
+        textStyle = LocalTextStyle.current.copy(color = MaterialTheme.colors.onSurface),
         value = text,
         onValueChange = onValueChange
     )

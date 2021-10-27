@@ -60,7 +60,7 @@ class CoinDetailViewModel @Inject constructor(
 
     @Composable
     fun MainContent() {
-        Box(modifier = Modifier.fillMaxSize().background(color = Color.White)) {
+        Box(modifier = Modifier.fillMaxSize()) {
             when {
                 state.value.coinDetail != null -> {
                     state.value.coinDetail?.let { coin ->
