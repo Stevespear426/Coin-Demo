@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Kotlin Demo</string>
+    <string name="app_name">Coin Demo</string>
 
     <string name="onboarding_title_1">Welcome to my Demo App!</string>
     <string name="onboarding_body_1">In this app I experiment with new versions of Android tools, UI components, 3rd party libraries, etc…</string>

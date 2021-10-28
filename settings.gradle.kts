@@ -5,5 +5,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Kotlin Demo"
+rootProject.name = "Coin Demo"
 include("app")

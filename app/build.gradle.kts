@@ -8,10 +8,10 @@ plugins {
 
 android {
     defaultConfig {
-        applicationId = "com.example.kotlindemo"
+        applicationId = "com.spear.coindemo"
         versionCode = 1
         versionName = "1.0"
-        testInstrumentationRunner = "com.example.kotlindemo.CustomTestRunner"
+        testInstrumentationRunner = "com.spear.coindemo.CustomTestRunner"
     }
 
     buildTypes {
