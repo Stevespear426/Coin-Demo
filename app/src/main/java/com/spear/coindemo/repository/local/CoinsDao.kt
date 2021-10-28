@@ -7,6 +7,8 @@ import androidx.room.Query
 import com.spear.coindemo.repository.model.Coin
 import com.spear.coindemo.repository.model.CoinDetail
 import com.spear.coindemo.repository.model.DataTimeStamps
+import com.spear.coindemo.repository.model.Favorite
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CoinsDao {
@@ -40,4 +42,16 @@ interface CoinsDao {
 
     @Query("DELETE FROM coin_details WHERE id = :id")
     fun deleteCoinDetails(id: String)
+
+    @Query("SELECT * FROM favorites")
+    fun getFavoritesFlow(): Flow<List<Favorite>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertFavorite(favorite: Favorite)
+
+    @Query("DELETE FROM favorites")
+    fun deleteAllFavorites()
+
+    @Query("DELETE FROM favorites WHERE id = :id")
+    fun deleteFavorite(id: String)
 }

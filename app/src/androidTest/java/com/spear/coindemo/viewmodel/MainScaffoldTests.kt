@@ -86,7 +86,7 @@ class MainScaffoldTests {
 
         val favoritesScreen =
             composeTestRule.onNode(
-                hasTestTag("Test FavoritesScreen MainContent"),
+                hasTestTag("Test FavoritesListViewModel MainContent"),
                 useUnmergedTree = true
             )
         favoritesScreen.assertIsDisplayed()

@@ -29,7 +29,6 @@ fun NavigationComponent(navController: NavHostController, setScreen: (screen: Sc
                 }
             )
         ) {
-            setScreen(Screen.CoinDetailScreen)
             CoinDetailsScreen()
         }
         composable(Screen.SettingsScreen.route) {
@@ -38,7 +37,7 @@ fun NavigationComponent(navController: NavHostController, setScreen: (screen: Sc
         }
         composable(Screen.FavoritesScreen.route) {
             setScreen(Screen.FavoritesScreen)
-            FavoritesScreen()
+            FavoritesScreen(navController)
         }
     }
 }

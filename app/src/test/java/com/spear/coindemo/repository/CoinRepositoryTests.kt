@@ -5,9 +5,9 @@ import com.spear.coindemo.repository.model.*
 import com.spear.coindemo.repository.remote.CoinService
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
+import io.mockk.impl.annotations.RelaxedMockK
 import kotlinx.coroutines.runBlocking
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertTrue
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 
@@ -19,7 +19,7 @@ class CoinRepositoryTests {
     @MockK
     lateinit var mockCoinService: CoinService
 
-    @MockK
+    @RelaxedMockK
     lateinit var mockCoinsDao: CoinsDao
 
     lateinit var subject: CoinRepository
@@ -117,6 +117,13 @@ class CoinRepositoryTests {
 
         coVerify(exactly = 0) { mockCoinService.getCoinDetails(any()) }
         assertEquals(mockCoinDetail, result)
+    }
+
+    @Test
+    fun `Test get Favorites`() = runBlocking {
+        val result = subject.getFavorites()
+        coVerify { mockCoinsDao.getFavoritesFlow() }
+        assertNotNull(result)
     }
 
     private fun getCoins(name: String): List<Coin> {

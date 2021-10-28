@@ -10,17 +10,14 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import com.spear.coindemo.repository.model.CoinDetail
 import com.spear.coindemo.repository.model.Tag
 import com.spear.coindemo.repository.model.Team
 
-@Preview
 @Composable
-fun CoinDetailView(@PreviewParameter(SampleCoinDetail::class) coin: CoinDetail) {
+fun CoinDetailView(coin: CoinDetail) {
     LazyColumn(
         Modifier
             .testTag("Test CoinDetailView")
@@ -28,7 +25,7 @@ fun CoinDetailView(@PreviewParameter(SampleCoinDetail::class) coin: CoinDetail) 
     ) {
         item {
             Spacer(modifier = Modifier.height(15.dp))
-            CoinTitleItem(coin)
+            CoinTitleItem(coin = coin)
             Spacer(modifier = Modifier.height(5.dp))
             Text(
                 coin.description ?: "",

@@ -36,26 +36,9 @@ class CoinTitleItemTests {
         val mainText = composeTestRule.onNode(hasTestTag("Main Text"), useUnmergedTree = true)
         mainText.assertIsDisplayed()
         mainText.assertTextEquals("1. name (symbol)")
-    }
 
-    @Test
-    fun testActiveText() {
-        composeTestRule.setContent {
-            CoinTitleItem(coin = getCoinDetails())
-        }
-        val activeText = composeTestRule.onNode(hasTestTag("Active Text"), useUnmergedTree = true)
-        activeText.assertIsDisplayed()
-        activeText.assertTextEquals("Active")
-    }
-
-    @Test
-    fun testInactiveText() {
-        composeTestRule.setContent {
-            CoinTitleItem(coin = getCoinDetails().copy(isActive = false))
-        }
-        val activeText = composeTestRule.onNode(hasTestTag("Active Text"), useUnmergedTree = true)
-        activeText.assertIsDisplayed()
-        activeText.assertTextEquals("Inactive")
+        val favoriteBadge = composeTestRule.onNode(hasTestTag("Test FavoriteBadge"), useUnmergedTree = true)
+        favoriteBadge.assertIsDisplayed()
     }
 
     private fun getCoinDetails(): CoinDetail = CoinDetail(

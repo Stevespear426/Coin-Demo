@@ -4,6 +4,8 @@ import android.app.Application
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import com.spear.coindemo.repository.model.*
+import kotlinx.coroutines.flow.take
+import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Assert.*
@@ -60,7 +62,6 @@ class CoinsDbTest {
         assertNotNull(coinDetails)
         coinDetails?.let { verifyCoinDetails(it) }
 
-
         // Test delete
         dao.deleteCoinDetails("id1234")
         coinDetails = dao.getCoinDetails("id1234")
@@ -83,11 +84,27 @@ class CoinsDbTest {
         assertNotNull(timestamps)
         assertEquals(1234L, timestamps?.coins)
 
-
         // Test delete
         dao.deleteTimeStamps()
         timestamps = dao.getTimeStamps()
         assertNull(timestamps)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun testFavoritesInsertAndDelete() = runBlocking {
+        // Test insert
+        dao.insertFavorite(Favorite("id"))
+        var favorites = dao.getFavoritesFlow()
+        assertNotNull(favorites)
+        assertEquals(1, favorites.take(1).toList()[0].size)
+        assertEquals("id", favorites.take(1).toList()[0][0].id)
+
+        // Test delete
+        dao.deleteFavorite("id")
+        favorites = dao.getFavoritesFlow()
+        assertNotNull(favorites)
+        assertEquals(0, favorites.take(1).toList()[0].size)
     }
 
     private fun getCoins(): Array<Coin> {
