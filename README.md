@@ -1,4 +1,4 @@
-# KotlinDemo
+# Coin Demo
 Messing around with various new tech.
 
 
