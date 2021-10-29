@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface CoinService {
-    @GET("v1/coins")
+    @GET("v1/tickers")
     suspend fun getCoins(): List<Coin>
 
     @GET("v1/coins/{id}")

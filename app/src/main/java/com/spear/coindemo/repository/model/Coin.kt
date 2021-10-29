@@ -10,12 +10,20 @@ import com.squareup.moshi.JsonClass
 data class Coin(
     @PrimaryKey
     val id: String,
-    @Json(name = "is_active")
-    val isActive: Boolean,
-    @Json(name = "is_new")
-    val isNew: Boolean,
     val name: String,
     val rank: Int,
     val symbol: String,
-    val type: String
+    @Json(name = "beta_value")
+    val betaValue: Double? = null,
+    @Json(name = "circulating_supply")
+    val circulatingSupply: Long? = null,
+    @Json(name = "first_data_at")
+    val firstDataAt: String? = null,
+    @Json(name = "last_updated")
+    val lastUpdated: String? = null,
+    @Json(name = "max_supply")
+    val maxSupply: Long? = null,
+    val quotes: Quotes? = null,
+    @Json(name = "total_supply")
+    val totalSupply: Long? = null
 )

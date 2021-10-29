@@ -6,7 +6,6 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.spear.coindemo.repository.model.Coin
 import com.spear.coindemo.repository.model.CoinDetail
-import com.spear.coindemo.repository.model.DataTimeStamps
 import com.spear.coindemo.repository.model.Favorite
 import kotlinx.coroutines.flow.Flow
 
@@ -21,15 +20,6 @@ interface CoinsDao {
 
     @Query("DELETE FROM coins")
     fun deleteAllCoins()
-
-    @Query("SELECT * FROM timestamps")
-    fun getTimeStamps(): DataTimeStamps?
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertTimeStamps(timeStamps: DataTimeStamps)
-
-    @Query("DELETE FROM timestamps")
-    fun deleteTimeStamps()
 
     @Query("SELECT * FROM coin_details WHERE id = :id")
     fun getCoinDetails(id: String): CoinDetail?

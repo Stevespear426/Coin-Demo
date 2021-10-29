@@ -40,12 +40,7 @@ class CoinsDbTest {
         dao.insertAllCoins(getCoins())
         var coins = dao.getAllCoins()
         assertEquals(1, coins.size)
-        assertEquals("id1234", coins.first().id)
-        assertEquals("Name", coins.first().name)
-        assertEquals("nme", coins.first().symbol)
-        assertEquals("type", coins.first().type)
-        assertTrue(coins.first().isActive)
-        assertFalse(coins.first().isNew)
+        verifyCoin(coins.first())
 
         // Test delete
         dao.deleteAllCoins()
@@ -77,21 +72,6 @@ class CoinsDbTest {
 
     @Test
     @Throws(Exception::class)
-    fun testTimeStampsInsertAndDelete() = runBlocking {
-        // Test insert
-        dao.insertTimeStamps(DataTimeStamps(coins = 1234))
-        var timestamps = dao.getTimeStamps()
-        assertNotNull(timestamps)
-        assertEquals(1234L, timestamps?.coins)
-
-        // Test delete
-        dao.deleteTimeStamps()
-        timestamps = dao.getTimeStamps()
-        assertNull(timestamps)
-    }
-
-    @Test
-    @Throws(Exception::class)
     fun testFavoritesInsertAndDelete() = runBlocking {
         // Test insert
         dao.insertFavorite(Favorite("id"))
@@ -111,12 +91,36 @@ class CoinsDbTest {
         return arrayOf(
             Coin(
                 "id1234",
-                isActive = true,
-                isNew = false,
                 name = "Name",
                 rank = 1,
                 symbol = "nme",
-                type = "type"
+                betaValue = 0.01,
+                circulatingSupply = 12345,
+                firstDataAt = "2021-10-29T16:23:06Z",
+                lastUpdated = "2021-10-29T16:23:06Z",
+                maxSupply = 34567,
+                totalSupply = 56789,
+                quotes = Quotes(
+                    USD(
+                        price = 0.00,
+                        athDate = "2021-10-29T16:23:06Z",
+                        athPrice = 0.01,
+                        marketCap = 1234567890,
+                        marketCapChange24h = 0.02,
+                        change15m = 0.03,
+                        change30m = 0.04,
+                        change1h = 0.05,
+                        change6h = 0.06,
+                        change12h = 0.07,
+                        change24h = 0.08,
+                        change7d = 0.09,
+                        change30d = 0.10,
+                        change1y = 0.11,
+                        changeTotal = 0.12,
+                        volume24h = 0.13,
+                        volume24hChange24h = 0.14
+                    )
+                )
             )
         )
     }
@@ -162,6 +166,43 @@ class CoinsDbTest {
         type = "type",
         whitepaper = Whitepaper(link = "link", thumbnail = "thumbnail"),
     )
+
+    private fun verifyCoin(coin: Coin) {
+        assertEquals("id1234", coin.id)
+        assertEquals("Name", coin.name)
+        assertEquals(1, coin.rank)
+        assertEquals("nme", coin.symbol)
+        assertEquals(0.01, coin.betaValue)
+        assertEquals(12345L, coin.circulatingSupply)
+        assertEquals(56789L, coin.totalSupply)
+        assertEquals(34567L, coin.maxSupply)
+        assertEquals("2021-10-29T16:23:06Z", coin.firstDataAt)
+        assertEquals("2021-10-29T16:23:06Z", coin.lastUpdated)
+        verifyQuotes(coin.quotes)
+    }
+
+    private fun verifyQuotes(quotes: Quotes?) {
+        assertNotNull(quotes?.USD)
+        quotes?.USD?.let { usd ->
+            assertEquals(0.00, usd.price)
+            assertEquals("2021-10-29T16:23:06Z", usd.athDate)
+            assertEquals(0.01, usd.athPrice)
+            assertEquals(1234567890L, usd.marketCap)
+            assertEquals(0.02, usd.marketCapChange24h)
+            assertEquals(0.03, usd.change15m)
+            assertEquals(0.04, usd.change30m)
+            assertEquals(0.05, usd.change1h)
+            assertEquals(0.06, usd.change6h)
+            assertEquals(0.07, usd.change12h)
+            assertEquals(0.08, usd.change24h)
+            assertEquals(0.09, usd.change7d)
+            assertEquals(0.10, usd.change30d)
+            assertEquals(0.11, usd.change1y)
+            assertEquals(0.12, usd.changeTotal)
+            assertEquals(0.13, usd.volume24h)
+            assertEquals(0.14, usd.volume24hChange24h)
+        }
+    }
 
     private fun verifyCoinDetails(coinDetails: CoinDetail) {
         assertEquals("description", coinDetails.description)

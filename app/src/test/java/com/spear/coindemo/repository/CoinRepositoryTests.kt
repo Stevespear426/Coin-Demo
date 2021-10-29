@@ -1,7 +1,8 @@
 package com.spear.coindemo.repository
 
 import com.spear.coindemo.repository.local.CoinsDao
-import com.spear.coindemo.repository.model.*
+import com.spear.coindemo.repository.model.Coin
+import com.spear.coindemo.repository.model.CoinDetail
 import com.spear.coindemo.repository.remote.CoinService
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
@@ -31,51 +32,47 @@ class CoinRepositoryTests {
     }
 
     @Test
-    fun `Test has no coins in DB`() = runBlocking {
-        coEvery { mockCoinsDao.getAllCoins() } returns emptyList()
+    fun `Test Successful Retrofit Fetch`() = runBlocking {
         coEvery { mockCoinService.getCoins() } returns getCoins("Name")
-        val mockTimeStamps = mockk<DataTimeStamps>(relaxed = true)
-        every { mockTimeStamps.coinsExpired() } returns false
-        coEvery { mockCoinsDao.getTimeStamps() } returns mockTimeStamps
         val result = subject.getCoins()
 
         coVerify { mockCoinService.getCoins() }
         coVerify { mockCoinsDao.insertAllCoins(any()) }
-        verify { mockTimeStamps.updateCoinTimestamp() }
-        coVerify { mockCoinsDao.insertTimeStamps(any()) }
 
         assertEquals(1, result.size)
+
+        coVerify(exactly = 0) { mockCoinsDao.getAllCoins() }
+
     }
 
     @Test
-    fun `Test has expired coins in DB`() = runBlocking {
-        coEvery { mockCoinsDao.getAllCoins() } returns getCoins("Old")
-        coEvery { mockCoinService.getCoins() } returns getCoins("New")
-        val mockTimeStamps = mockk<DataTimeStamps>(relaxed = true)
-        every { mockTimeStamps.coinsExpired() } returns true
-        coEvery { mockCoinsDao.getTimeStamps() } returns mockTimeStamps
-        val result = subject.getCoins()
-
-        coVerify { mockCoinService.getCoins() }
-        coVerify { mockCoinsDao.insertAllCoins(any()) }
-        verify { mockTimeStamps.updateCoinTimestamp() }
-        coVerify { mockCoinsDao.insertTimeStamps(any()) }
-
-        assertEquals(1, result.size)
-        assertEquals("New", result.first().name)
-    }
-
-    @Test
-    fun `Test has valid coins in DB`() = runBlocking {
+    fun `Test Retrofit Fetch Failure`() = runBlocking {
         coEvery { mockCoinsDao.getAllCoins() } returns getCoins("Name")
-        val mockTimeStamps = mockkClass(DataTimeStamps::class)
-        every { mockTimeStamps.coinsExpired() } returns false
-        coEvery { mockCoinsDao.getTimeStamps() } returns mockTimeStamps
+        coEvery { mockCoinService.getCoins() } throws Exception()
         val result = subject.getCoins()
 
-        coVerify(exactly = 0) { mockCoinService.getCoins() }
+        coVerify { mockCoinService.getCoins() }
+        coVerify(exactly = 0) { mockCoinsDao.insertAllCoins(any()) }
+        coVerify { mockCoinsDao.getAllCoins() }
+
         assertEquals(1, result.size)
+
     }
+
+    @Test
+    fun `Test Retrofit Fetch Failure and Empty DB`() = runBlocking {
+        coEvery { mockCoinsDao.getAllCoins() } returns emptyList()
+        coEvery { mockCoinService.getCoins() } throws Exception()
+        val result = subject.getCoins()
+
+        coVerify { mockCoinService.getCoins() }
+        coVerify(exactly = 0) { mockCoinsDao.insertAllCoins(any()) }
+        coVerify { mockCoinsDao.getAllCoins() }
+
+        assertEquals(0, result.size)
+
+    }
+
 
     @Test
     fun `Test has no coinDetail in DB`() = runBlocking {
@@ -130,39 +127,10 @@ class CoinRepositoryTests {
         return listOf(
             Coin(
                 "id1234",
-                isActive = true,
-                isNew = false,
                 name = name,
                 rank = 1,
                 symbol = "nme",
-                type = "type"
             )
         )
     }
-
-    private fun getCoinDetails(): CoinDetail = CoinDetail(
-        description = "",
-        developmentStatus = "",
-        firstDataAt = "",
-        hardwareWallet = true,
-        hashAlgorithm = "",
-        id = "id1234",
-        isActive = true,
-        isNew = true,
-        lastDataAt = "",
-        links = Links(),
-        linksExtended = emptyList(),
-        message = "",
-        name = "",
-        openSource = true,
-        orgStructure = "",
-        proofType = "",
-        rank = 1,
-        startedAt = "",
-        symbol = "",
-        tags = emptyList(),
-        team = emptyList(),
-        type = "",
-        whitepaper = Whitepaper(),
-    )
 }

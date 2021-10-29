@@ -3,7 +3,6 @@ package com.spear.coindemo.repository
 import com.spear.coindemo.repository.local.CoinsDao
 import com.spear.coindemo.repository.model.Coin
 import com.spear.coindemo.repository.model.CoinDetail
-import com.spear.coindemo.repository.model.DataTimeStamps
 import com.spear.coindemo.repository.model.Favorite
 import com.spear.coindemo.repository.remote.CoinService
 import kotlinx.coroutines.flow.Flow
@@ -11,16 +10,14 @@ import javax.inject.Inject
 
 class CoinRepository @Inject constructor(var coinService: CoinService, var coinsDao: CoinsDao) {
 
-    suspend fun getCoins() : List<Coin> {
-        val coinTimeStamp = coinsDao.getTimeStamps() ?: DataTimeStamps()
-        var coins = coinsDao.getAllCoins()
-        if (coins.isNullOrEmpty() || coinTimeStamp.coinsExpired()) {
-            coins = coinService.getCoins()
+    suspend fun getCoins(): List<Coin> {
+        return try {
+            val coins = coinService.getCoins()
             coinsDao.insertAllCoins(coins.toTypedArray())
-            coinTimeStamp.updateCoinTimestamp()
-            coinsDao.insertTimeStamps(coinTimeStamp)
+            coins
+        } catch (e: Exception) {
+            coinsDao.getAllCoins()
         }
-        return coins
     }
 
 
@@ -33,7 +30,7 @@ class CoinRepository @Inject constructor(var coinService: CoinService, var coins
         return coinDetails
     }
 
-    fun getFavorites() : Flow<List<Favorite>> {
+    fun getFavorites(): Flow<List<Favorite>> {
         return coinsDao.getFavoritesFlow()
     }
 

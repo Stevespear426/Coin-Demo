@@ -79,15 +79,28 @@ class CoinListTests {
     }
 
 
+    @Test
+    fun testCoinListDurationRow() {
+        val list = getCoinList()
+        composeTestRule.setContent {
+            CoinList(list, mockk())
+        }
+        val main = composeTestRule.onNode(hasTestTag("Test CoinList"), useUnmergedTree = true)
+        main.assertIsDisplayed()
+
+        val durationRow =
+            composeTestRule.onNode(hasTestTag("Test DurationRow"), useUnmergedTree = true)
+        durationRow.assertIsDisplayed()
+
+    }
+
+
     private fun getCoinList(): List<Coin> {
         val coin = Coin(
             id = "id1234",
-            isActive = true,
-            isNew = true,
             name = "Bitcoin",
             rank = 1,
             symbol = "symbol",
-            type = "type",
         )
         return listOf(coin, coin.copy(name = "Dogecoin"), coin.copy(name = "Hex"))
     }

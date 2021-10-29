@@ -85,12 +85,9 @@ class CoinsListViewModelTests {
         return listOf(
             Coin(
                 "id1234",
-                isActive = true,
-                isNew = false,
                 name = "Name",
                 rank = 1,
                 symbol = "nme",
-                type = "type"
             )
         )
     }

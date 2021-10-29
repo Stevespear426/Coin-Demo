@@ -78,11 +78,8 @@ class GetFavoriteCoinsUseCaseTests {
 
     private fun getCoin(): Coin = Coin(
         id = "id1234",
-        isActive = true,
-        isNew = true,
         name = "name",
         rank = 1,
         symbol = "symbol",
-        type = "type",
     )
 }

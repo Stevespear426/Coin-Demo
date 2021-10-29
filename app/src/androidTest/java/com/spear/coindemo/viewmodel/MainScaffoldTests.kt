@@ -14,7 +14,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
-@UninstallModules(AppModule::class)
+//@UninstallModules(AppModule::class)
 @HiltAndroidTest
 class MainScaffoldTests {
 

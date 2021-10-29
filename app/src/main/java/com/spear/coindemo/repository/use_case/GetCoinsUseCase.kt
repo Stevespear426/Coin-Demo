@@ -12,8 +12,7 @@ class GetCoinsUseCase @Inject constructor(val repository: CoinRepository) {
 
     operator fun invoke(): Flow<Resource<List<Coin>>> = flow {
         emit(Resource.Loading())
-        val coins = repository.getCoins()
-        emit(Resource.Success(coins))
+        emit(Resource.Success(repository.getCoins()))
     }.catch { e ->
         emit(Resource.Error(message = e.localizedMessage ?: "Unexpected error"))
     }

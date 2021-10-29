@@ -11,7 +11,8 @@ class Converters {
 
     var moshiBuild = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
     inline fun <reified T> moshi(): JsonAdapter<T> = moshiBuild.adapter(T::class.java)
-    inline fun <reified T, reified D> moshiList(): JsonAdapter<T> = moshiBuild.adapter(Types.newParameterizedType(List::class.java, D::class.java))
+    inline fun <reified T, reified D> moshiList(): JsonAdapter<T> =
+        moshiBuild.adapter(Types.newParameterizedType(List::class.java, D::class.java))
 
     @TypeConverter
     fun fromLinkString(value: String?): Links? {
@@ -28,7 +29,7 @@ class Converters {
 
     @TypeConverter
     fun linksExtendedToString(linksExtended: List<LinksExtended>?): String {
-      return moshiList<List<LinksExtended>, LinksExtended>().toJson(linksExtended)
+        return moshiList<List<LinksExtended>, LinksExtended>().toJson(linksExtended)
     }
 
     @TypeConverter
@@ -54,4 +55,12 @@ class Converters {
 
     @TypeConverter
     fun tagsToString(tags: List<Tag>?): String = moshiList<List<Tag>, Tag>().toJson(tags)
+
+    @TypeConverter
+    fun fromQuoteString(value: String?): Quotes? {
+        return value?.let { moshi<Quotes>().fromJson(value) }
+    }
+
+    @TypeConverter
+    fun quoteToString(quotes: Quotes?): String = moshi<Quotes>().toJson(quotes)
 }

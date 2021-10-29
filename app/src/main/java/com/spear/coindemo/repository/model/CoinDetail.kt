@@ -49,7 +49,7 @@ data class CoinDetail(
     var timestamp: Long = System.currentTimeMillis()
 ) {
     fun updateTimestamp() {
-        timestamp = System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(1)
+        timestamp = System.currentTimeMillis() + TimeUnit.DAYS.toMillis(1)
     }
 
     fun expired(): Boolean {
