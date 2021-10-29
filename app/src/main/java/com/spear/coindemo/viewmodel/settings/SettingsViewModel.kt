@@ -29,6 +29,11 @@ class SettingsViewModel @Inject constructor(
     private val launchUrlUseCase: LaunchUrlUseCase
 ) : ViewModel() {
 
+    companion object {
+        const val LARGE_SPACE = 30
+        const val SMALL_SPACE = 20
+    }
+
     @Composable
     fun MainContent() {
         val context = LocalContext.current
@@ -38,24 +43,24 @@ class SettingsViewModel @Inject constructor(
                 .padding(horizontal = 20.dp)
                 .testTag("Test SettingsScreen MainContent")
         ) {
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(SMALL_SPACE.dp))
             Text("App Settings", color = LightBlue)
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(SMALL_SPACE.dp))
             CustomPref(
                 title = "Re-Show Onboarding",
             ) {
                 viewModelScope.launch { appRepository.setOnboarded(false) }
             }
 
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(LARGE_SPACE.dp))
             Text("Developer Info", color = LightBlue)
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(SMALL_SPACE.dp))
             CustomPref(
                 title = "Github",
                 icon = R.drawable.github,
             ) { launchUrlUseCase(context, GITHUB_URL) }
 
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(SMALL_SPACE.dp))
             CustomPref(
                 title = "LinkedIn",
                 icon = R.drawable.linkedin,

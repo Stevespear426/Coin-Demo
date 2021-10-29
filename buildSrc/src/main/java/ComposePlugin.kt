@@ -4,7 +4,7 @@ import org.gradle.api.Project
 
 class ComposePlugin : Plugin<Project> {
     object Compose {
-        const val version = "1.1.0-alpha06"
+        const val version = "1.1.0-beta01"
     }
 
     private val version = Compose.version
