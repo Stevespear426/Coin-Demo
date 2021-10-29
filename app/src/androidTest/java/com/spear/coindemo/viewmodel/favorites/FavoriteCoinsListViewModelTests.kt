@@ -4,7 +4,7 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import com.spear.coindemo.common.Resource
-import com.spear.coindemo.presentation.MainActivity
+import com.spear.coindemo.MainActivity
 import com.spear.coindemo.repository.model.Coin
 import com.spear.coindemo.repository.use_case.favorites.GetFavoriteCoinsUseCase
 import dagger.hilt.android.testing.HiltAndroidRule

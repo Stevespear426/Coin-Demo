@@ -3,7 +3,7 @@ package com.spear.coindemo.viewmodel.coin_detail
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import com.spear.coindemo.presentation.MainActivity
+import com.spear.coindemo.MainActivity
 import com.spear.coindemo.repository.model.*
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest

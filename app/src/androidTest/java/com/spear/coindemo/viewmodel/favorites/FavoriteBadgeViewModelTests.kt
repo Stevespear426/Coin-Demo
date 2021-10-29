@@ -5,7 +5,7 @@ import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.performClick
 import com.spear.coindemo.common.Resource
-import com.spear.coindemo.presentation.MainActivity
+import com.spear.coindemo.MainActivity
 import com.spear.coindemo.repository.use_case.favorites.AddFavoriteUseCase
 import com.spear.coindemo.repository.use_case.favorites.DeleteFavoriteUseCase
 import com.spear.coindemo.repository.use_case.favorites.IsFavoriteUseCase

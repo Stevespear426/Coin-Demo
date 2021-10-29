@@ -1,12 +1,12 @@
-package com.spear.coindemo.presentation
+package com.spear.coindemo
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import  com.spear.coindemo.ui.theme.DemoTheme
-import  com.spear.coindemo.viewmodel.MainActivityViewModel
+import com.spear.coindemo.ui.theme.DemoTheme
+import com.spear.coindemo.viewmodel.MainActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

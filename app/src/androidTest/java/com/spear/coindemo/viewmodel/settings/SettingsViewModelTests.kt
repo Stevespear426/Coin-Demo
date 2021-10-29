@@ -8,7 +8,7 @@ import androidx.compose.ui.test.performClick
 import com.spear.coindemo.BuildConfig
 import com.spear.coindemo.common.Constants.GITHUB_URL
 import com.spear.coindemo.common.Constants.LINKEDIN_URL
-import com.spear.coindemo.presentation.MainActivity
+import com.spear.coindemo.MainActivity
 import com.spear.coindemo.repository.AppRepository
 import com.spear.coindemo.repository.use_case.settings.LaunchUrlUseCase
 import dagger.hilt.android.testing.HiltAndroidRule

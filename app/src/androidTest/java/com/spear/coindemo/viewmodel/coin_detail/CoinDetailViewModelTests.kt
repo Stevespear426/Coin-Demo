@@ -5,7 +5,7 @@ import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.lifecycle.SavedStateHandle
 import com.spear.coindemo.common.Resource
-import com.spear.coindemo.presentation.MainActivity
+import com.spear.coindemo.MainActivity
 import com.spear.coindemo.repository.model.*
 import com.spear.coindemo.repository.use_case.GetCoinDetailUseCase
 import dagger.hilt.android.testing.HiltAndroidRule
