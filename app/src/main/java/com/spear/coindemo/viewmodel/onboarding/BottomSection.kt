@@ -19,6 +19,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.spear.coindemo.ui.theme.LightBlue
 
 @Composable
 fun BottomSection(
@@ -37,8 +38,10 @@ fun BottomSection(
         //next button
         FloatingActionButton(
             onClick = onNextClicked,
-            modifier = Modifier.align(Alignment.CenterEnd).testTag("FAB"),
-            backgroundColor = MaterialTheme.colors.primary,
+            modifier = Modifier
+                .align(Alignment.CenterEnd)
+                .testTag("FAB"),
+            backgroundColor = LightBlue,
             contentColor = MaterialTheme.colors.onPrimary
         ) {
             if (index == size - 1)
@@ -84,9 +87,10 @@ fun Indicator(index: Int, isSelected: Boolean) {
             .width(width.value)
             .clip(CircleShape)
             .background(
-                if (isSelected) MaterialTheme.colors.primary
+                if (isSelected) LightBlue
                 else MaterialTheme.colors.onBackground.copy(alpha = 0.5f)
-            ).testTag("Indicator_${index}_${isSelected}")
+            )
+            .testTag("Indicator_${index}_${isSelected}")
     )
 }
 

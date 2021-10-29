@@ -22,7 +22,10 @@ fun MainScaffold() {
         },
         bottomBar = {
             AppBottomBar(currentScreen.value) { route ->
-                navController.navigate(route)
+                navController.navigate(route) {
+                    launchSingleTop = true
+                    popUpTo(Screen.CoinListScreen.route) { inclusive = false }
+                }
             }
         }
     )

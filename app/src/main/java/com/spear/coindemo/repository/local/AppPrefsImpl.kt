@@ -12,9 +12,9 @@ class AppPrefsImpl(private val context: Application) : AppPrefs {
 
     private val Context.dataStore by preferencesDataStore("app_preferences")
 
-    override suspend fun setOnboarded() {
+    override suspend fun setOnboarded(onBoarded: Boolean) {
         context.dataStore.edit { preferences ->
-            preferences[ONBOARDING_KEY] = true
+            preferences[ONBOARDING_KEY] = onBoarded
         }
     }
 

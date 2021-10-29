@@ -24,6 +24,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.spear.coindemo.R
+import com.spear.coindemo.ui.theme.LightBlue
 
 @Preview
 @Composable
@@ -41,7 +42,7 @@ fun OnboardingItem(
         Image(
             painter = painterResource(item.icon),
             contentDescription = null,
-            colorFilter = ColorFilter.tint(MaterialTheme.colors.primary),
+            colorFilter = ColorFilter.tint(LightBlue),
             modifier = Modifier.testTag("Icon")
         )
         Text(

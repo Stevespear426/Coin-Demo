@@ -8,8 +8,8 @@ import javax.inject.Singleton
 @Singleton
 class AppRepository @Inject constructor(val appPrefs: AppPrefs) {
 
-    suspend fun setOnboarded() {
-        appPrefs.setOnboarded()
+    suspend fun setOnboarded(onBoarded: Boolean = true) {
+        appPrefs.setOnboarded(onBoarded)
     }
 
     fun isOnboarded(): Flow<Boolean> = appPrefs.isOnboarded()

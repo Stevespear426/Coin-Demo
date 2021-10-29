@@ -10,6 +10,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import com.spear.coindemo.presentation.Screen
+import com.spear.coindemo.ui.theme.LightBlue
 
 @Composable
 fun AppBottomBar(currentScreen: Screen, routeTo: (route: String) -> Unit) {
@@ -29,7 +30,7 @@ fun AppBottomBar(currentScreen: Screen, routeTo: (route: String) -> Unit) {
                 )
             },
             selected = currentScreen == Screen.CoinListScreen || currentScreen == Screen.CoinDetailScreen,
-            selectedContentColor = Color.White,
+            selectedContentColor = LightBlue,
             unselectedContentColor = Color.White.copy(alpha = 0.4f),
             onClick = {
                 routeTo(Screen.CoinListScreen.route)
@@ -49,7 +50,7 @@ fun AppBottomBar(currentScreen: Screen, routeTo: (route: String) -> Unit) {
                 )
             },
             selected = currentScreen == Screen.FavoritesScreen,
-            selectedContentColor = Color.White,
+            selectedContentColor = LightBlue,
             unselectedContentColor = Color.White.copy(alpha = 0.4f),
             onClick = {
                 routeTo(Screen.FavoritesScreen.route)
@@ -69,7 +70,7 @@ fun AppBottomBar(currentScreen: Screen, routeTo: (route: String) -> Unit) {
                 )
             },
             selected = currentScreen == Screen.SettingsScreen,
-            selectedContentColor = Color.White,
+            selectedContentColor = LightBlue,
             unselectedContentColor = Color.White.copy(alpha = 0.4f),
             onClick = {
                 routeTo(Screen.SettingsScreen.route)

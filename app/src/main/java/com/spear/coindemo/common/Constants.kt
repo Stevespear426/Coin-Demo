@@ -5,4 +5,6 @@ object Constants {
     const val DB_NAME = "coins_database"
     const val PARAM_COIN_ID = "coinId"
 
+    const val GITHUB_URL = "https://github.com/Stevespear426"
+    const val LINKEDIN_URL = "https://www.linkedin.com/in/stephen-spear-2956875b/"
 }

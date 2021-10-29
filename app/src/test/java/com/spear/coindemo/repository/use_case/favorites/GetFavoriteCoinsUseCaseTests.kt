@@ -1,10 +1,9 @@
-package com.spear.coindemo.repository.use_case
+package com.spear.coindemo.repository.use_case.favorites
 
 import com.spear.coindemo.common.Resource
 import com.spear.coindemo.repository.CoinRepository
 import com.spear.coindemo.repository.model.Coin
 import com.spear.coindemo.repository.model.Favorite
-import com.spear.coindemo.repository.use_case.favorites.GetFavoriteCoinsUseCase
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
