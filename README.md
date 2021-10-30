@@ -23,3 +23,5 @@ Tests are using MockK
 Splash screen using core-splashscreen for Android 12 splash screen backward compat
 
 Moshi for JSON parsing
+
+Data from https://api.coinpaprika.com/ rest apis.
