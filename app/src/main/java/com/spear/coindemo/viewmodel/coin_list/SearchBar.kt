@@ -6,8 +6,10 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.spear.coindemo.R
 
 @Composable
 fun SearchBar(text: String, onValueChange: (id: String) -> Unit) {
@@ -17,8 +19,8 @@ fun SearchBar(text: String, onValueChange: (id: String) -> Unit) {
             .padding(all = 5.dp)
             .testTag("Test SearchBar"),
         singleLine = true,
-        label = { Text("Search") },
-        placeholder = { Text("Coin") },
+        label = { Text(stringResource(R.string.search)) },
+        placeholder = { Text(stringResource(R.string.coin)) },
         maxLines = 1,
         textStyle = LocalTextStyle.current.copy(color = MaterialTheme.colors.onSurface),
         value = text,

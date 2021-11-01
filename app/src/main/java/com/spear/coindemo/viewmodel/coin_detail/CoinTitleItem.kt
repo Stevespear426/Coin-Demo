@@ -27,7 +27,7 @@ fun CoinTitleItem(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            "${coin.rank}. ${coin.name} (${coin.symbol})",
+            "${coin.name} (${coin.symbol})",
             style = MaterialTheme.typography.h6.copy(color = MaterialTheme.colors.onSurface),
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,

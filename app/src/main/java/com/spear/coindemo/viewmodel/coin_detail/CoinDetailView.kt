@@ -10,8 +10,10 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
+import com.spear.coindemo.R
 import com.spear.coindemo.repository.model.CoinDetail
 import com.spear.coindemo.repository.model.Tag
 import com.spear.coindemo.repository.model.Team
@@ -35,7 +37,7 @@ fun CoinDetailView(coin: CoinDetail) {
             coin.tags?.let { tags ->
                 Spacer(modifier = Modifier.height(15.dp))
                 Text(
-                    text = "Tags",
+                    text = stringResource(R.string.tags),
                     style = MaterialTheme.typography.h6.copy(color = MaterialTheme.colors.onSurface)
                 )
                 Spacer(modifier = Modifier.height(5.dp))
@@ -44,7 +46,7 @@ fun CoinDetailView(coin: CoinDetail) {
             coin.team?.let {
                 Spacer(modifier = Modifier.height(15.dp))
                 Text(
-                    text = "Team members",
+                    text = stringResource(R.string.team_members),
                     style = MaterialTheme.typography.h6.copy(color = MaterialTheme.colors.onSurface)
                 )
                 Spacer(modifier = Modifier.height(5.dp))

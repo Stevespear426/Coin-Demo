@@ -10,8 +10,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.spear.coindemo.R
 import com.spear.coindemo.common.Resource
 import com.spear.coindemo.repository.model.Coin
 import com.spear.coindemo.repository.use_case.GetCoinsUseCase
@@ -53,7 +55,10 @@ class CoinsListViewModel @Inject constructor(
     @Composable
     fun MainContent(onClick: (id: String) -> Unit) {
         val coinState = state.value
-        Box(Modifier.fillMaxSize().testTag("Test CoinListViewModel MainContent")) {
+        Box(
+            Modifier
+                .fillMaxSize()
+                .testTag("Test CoinListViewModel MainContent")) {
             when {
                 coinState.coins.isNotEmpty() -> CoinList(coinState.coins, onClick)
                 coinState.isLoading -> {
@@ -63,7 +68,7 @@ class CoinsListViewModel @Inject constructor(
                             .testTag("Spinner")
                     )
                 }
-                else -> Text("Coins not found", Modifier.testTag("Error"))
+                else -> Text(stringResource(R.string.coins_not_found), Modifier.testTag("Error"))
             }
         }
     }

@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.spear.coindemo.presentation.Screen
 import com.spear.coindemo.ui.theme.LightBlue
@@ -21,13 +22,11 @@ fun AppBottomBar(currentScreen: Screen, routeTo: (route: String) -> Unit) {
             icon = {
                 Icon(
                     imageVector = Screen.CoinListScreen.icon,
-                    contentDescription = Screen.CoinListScreen.title
+                    contentDescription = "CoinsListScreen"
                 )
             },
             label = {
-                Text(
-                    text = Screen.CoinListScreen.title
-                )
+                Text(stringResource(Screen.CoinListScreen.title))
             },
             selected = currentScreen == Screen.CoinListScreen || currentScreen == Screen.CoinDetailScreen,
             selectedContentColor = LightBlue,
@@ -41,13 +40,11 @@ fun AppBottomBar(currentScreen: Screen, routeTo: (route: String) -> Unit) {
             icon = {
                 Icon(
                     imageVector = Screen.FavoritesScreen.icon,
-                    contentDescription = Screen.FavoritesScreen.title
+                    contentDescription = "FavoritesScreen"
                 )
             },
             label = {
-                Text(
-                    text = Screen.FavoritesScreen.title
-                )
+                Text(stringResource(Screen.FavoritesScreen.title))
             },
             selected = currentScreen == Screen.FavoritesScreen,
             selectedContentColor = LightBlue,
@@ -61,13 +58,11 @@ fun AppBottomBar(currentScreen: Screen, routeTo: (route: String) -> Unit) {
             icon = {
                 Icon(
                     imageVector = Screen.SettingsScreen.icon,
-                    contentDescription = Screen.SettingsScreen.title
+                    contentDescription = "SettingsScreen"
                 )
             },
             label = {
-                Text(
-                    text = Screen.SettingsScreen.title
-                )
+                Text(stringResource(Screen.SettingsScreen.title))
             },
             selected = currentScreen == Screen.SettingsScreen,
             selectedContentColor = LightBlue,

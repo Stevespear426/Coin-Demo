@@ -10,8 +10,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.spear.coindemo.R
 import com.spear.coindemo.common.Resource
 import com.spear.coindemo.repository.model.Coin
 import com.spear.coindemo.repository.use_case.favorites.GetFavoriteCoinsUseCase
@@ -68,7 +70,7 @@ class FavoriteCoinsListViewModel @Inject constructor(
                             .testTag("Spinner")
                     )
                 }
-                else -> Text("No favorites saved", Modifier.align(Alignment.Center).testTag("Error"))
+                else -> Text(stringResource(R.string.no_favorites), Modifier.align(Alignment.Center).testTag("Error"))
             }
         }
     }

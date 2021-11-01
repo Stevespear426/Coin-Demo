@@ -35,7 +35,7 @@ class CoinTitleItemTests {
         }
         val mainText = composeTestRule.onNode(hasTestTag("Main Text"), useUnmergedTree = true)
         mainText.assertIsDisplayed()
-        mainText.assertTextEquals("1. name (symbol)")
+        mainText.assertTextEquals("name (symbol)")
 
         val favoriteBadge = composeTestRule.onNode(hasTestTag("Test FavoriteBadge"), useUnmergedTree = true)
         favoriteBadge.assertIsDisplayed()

@@ -7,4 +7,27 @@
     <string name="onboarding_body_2">The basic functionality on the app is to retrieve cryptocurrency data via http rest api and cache the data to disk for future use.\n\nThe architecture is MVVM, utilizing CLEAN principles, and heavily relies on Unit and Integration testing.  </string>
     <string name="onboarding_title_3">Enjoy!</string>
     <string name="onboarding_body_3">Thanks for checking out this constantly evolving Demo.</string>
+
+    <string name="app_settings">App Settings</string>
+    <string name="reshow_onboarding">Re-Show Onboarding</string>
+    <string name="developer_info">Developer Info</string>
+    <string name="github">Github</string>
+    <string name="linkedin">LinkedIn</string>
+    <string name="version">Version: %s (%s)</string>
+    <string name="search">Search</string>
+    <string name="tags">Tags</string>
+    <string name="team_members">Team Members</string>
+    <string name="coin">Coin</string>
+    <string name="coins">Coins</string>
+    <string name="favorites">Favorites</string>
+    <string name="settings">Settings</string>
+    <string name="details">Details</string>
+
+    <string name="hour">1H</string>
+    <string name="day">1D</string>
+    <string name="week">1W</string>
+    <string name="month">1M</string>
+    <string name="year">1Y</string>
+    <string name="coins_not_found">Coins not found</string>
+    <string name="no_favorites">No favorites saved</string>
 </resources>
