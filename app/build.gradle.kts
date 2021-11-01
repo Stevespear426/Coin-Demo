@@ -29,8 +29,6 @@ dependencies {
     implementation(Deps.datastore)
     implementation(Deps.pager)
     implementation(Deps.pagerIndicators)
-
-    implementation("com.google.accompanist:accompanist-navigation-animation:0.21.0-beta")
 }
 
 // Test Logging

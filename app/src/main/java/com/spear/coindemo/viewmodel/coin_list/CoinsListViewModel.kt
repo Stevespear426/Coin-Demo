@@ -13,6 +13,8 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.accompanist.swiperefresh.SwipeRefresh
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.spear.coindemo.R
 import com.spear.coindemo.common.Resource
 import com.spear.coindemo.repository.model.Coin
@@ -46,7 +48,7 @@ class CoinsListViewModel @Inject constructor(
                     _state.value = CoinListState(error = result.message ?: "Error")
                 }
                 is Resource.Loading -> {
-                    _state.value = CoinListState(isLoading = true)
+                    _state.value = state.value.copy(isLoading = true)
                 }
             }
         }.launchIn(viewModelScope)
@@ -58,9 +60,17 @@ class CoinsListViewModel @Inject constructor(
         Box(
             Modifier
                 .fillMaxSize()
-                .testTag("Test CoinListViewModel MainContent")) {
+                .testTag("Test CoinListViewModel MainContent")
+        ) {
             when {
-                coinState.coins.isNotEmpty() -> CoinList(coinState.coins, onClick)
+                coinState.coins.isNotEmpty() -> {
+                    SwipeRefresh(
+                        state = rememberSwipeRefreshState(coinState.isLoading),
+                        onRefresh = { getCoins() },
+                    ) {
+                        CoinList(coinState.coins, onClick)
+                    }
+                }
                 coinState.isLoading -> {
                     CircularProgressIndicator(
                         Modifier

@@ -54,6 +54,8 @@ class BasePlugin : Plugin<Project> {
         project.dependencies.add("implementation", Deps.activityCompose)
         project.dependencies.add("implementation", Deps.coreSplashScreen)
         project.dependencies.add("implementation", Deps.navigationRuntime)
+        project.dependencies.add("implementation", Deps.navigationAnimation)
+        project.dependencies.add("implementation", Deps.swipeToRefresh)
 
         //Testing deps
         project.dependencies.add("androidTestImplementation", Deps.extJunit4)
