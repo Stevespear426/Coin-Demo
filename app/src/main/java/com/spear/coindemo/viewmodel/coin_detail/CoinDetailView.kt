@@ -28,7 +28,7 @@ fun CoinDetailView(coin: CoinDetail) {
         item {
             Spacer(modifier = Modifier.height(15.dp))
             CoinTitleItem(coin = coin)
-            Spacer(modifier = Modifier.height(5.dp))
+            Spacer(modifier = Modifier.height(10.dp))
             Text(
                 coin.description ?: "",
                 style = MaterialTheme.typography.body2.copy(color = MaterialTheme.colors.onSurface),

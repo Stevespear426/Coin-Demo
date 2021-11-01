@@ -1,17 +1,19 @@
 package com.spear.coindemo.viewmodel
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.spear.coindemo.presentation.Screen
 
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun MainScaffold() {
     val scaffoldState = rememberScaffoldState()
-    val navController = rememberNavController()
+    val navController = rememberAnimatedNavController()
     val currentScreen = remember { mutableStateOf<Screen>(Screen.CoinListScreen) }
     Scaffold(
         scaffoldState = scaffoldState,

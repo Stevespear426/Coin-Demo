@@ -1,6 +1,8 @@
 package com.spear.coindemo.viewmodel.favorites
 
+import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Favorite
@@ -10,6 +12,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.spear.coindemo.common.Resource
@@ -89,10 +92,12 @@ class FavoritesBadgeViewModel @Inject constructor(
     @Composable
     fun MainContent(favId: String) {
         val isFav = state.value.isFavorite == true
+        val size = animateDpAsState(targetValue = if (isFav) 24.dp else 20.dp)
         Icon(
             imageVector = if (isFav) Icons.Outlined.Favorite else Icons.Outlined.FavoriteBorder,
             modifier = Modifier
                 .testTag("Test FavoriteBadge")
+                .size(size.value)
                 .clickable {
                     if (isFav) deleteFavorite(favId)
                     else addFavorite(favId)
